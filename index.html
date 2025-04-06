@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="海島嶼光民宿：不只看見風景，更住進蘭嶼的日常與故事裡。與山海共生，體驗最真實的蘭嶼時光。提供舒適房型、在地體驗與優惠活動。" data-i18n-key="meta.description">
+    <title>海島嶼光 - 蘭嶼民宿</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS 自訂設定
+        tailwind.config = {
+            // REMOVED: darkMode: 'class', // 移除深色模式設定
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // 設定主要字體，優先使用 Noto Sans TC
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // 自訂顏色主題
+                        primary: { light: '#ade8f4', DEFAULT: '#0077b6', dark: '#023e8a' }, // 海洋藍 (淺/預設/深)
+                        secondary: { light: '#34d399', DEFAULT: '#059669', dark: '#047857' }, // 森林綠 (淺/預設/深)
+                        accent: '#f59e0b', // 強調橘
+                        wood: { extralight: '#f5f5dc', light: '#d2b48c', DEFAULT: '#c19a6b', dark: '#8b5a2b', darker: '#5a3a1a' }, // 木質色調 (極淺/淺/預設/深/更深)
+                        neutral: { light: '#f8f9fa', DEFAULT: '#6c757d', dark: '#343a40', extralight: '#e9ecef', darker: '#212529' } // 中性色調
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本樣式 */
+        /* 更新: body 背景色固定為白色，文字為深灰 */
+        body { font-family: 'Noto Sans TC', 'Inter', sans-serif; @apply transition-colors duration-300 bg-white text-neutral-dark; }
+        /* 固定標頭的平滑滾動偏移 */
+        section[id] { scroll-margin-top: 80px; } /* 調整此值以匹配標頭高度 */
+        /* 語言按鈕樣式 */
+        .lang-btn { @apply px-3 py-1 text-sm rounded-md transition-colors duration-200; }
+        .lang-btn.active { @apply bg-accent text-white font-semibold; } /* 啟用狀態 */
+        /* 更新: 移除 dark 樣式 */
+        .lang-btn:not(.active) { @apply text-wood-darker hover:bg-wood-DEFAULT; }
+        /* 手機版選單容器樣式 - 更新: 移除 dark 樣式 */
+        #mobile-menu-items { @apply absolute top-full left-0 right-0 bg-wood-light shadow-lg p-4 space-y-2 z-40; }
+        /* 手機版選單連結樣式 - 更新: 移除 dark 樣式 */
+        #mobile-menu-items a { @apply block px-3 py-2 rounded hover:bg-wood-DEFAULT text-wood-darker; }
+        /* Hero 區塊文字陰影，增加可讀性 */
+        .text-shadow { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
+    </style>
+</head>
+<body> <header class="bg-wood-light shadow-md fixed top-0 left-0 right-0 z-50 rounded-b-lg transition-colors duration-300 border-b-4 border-accent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <a href="#" class="text-2xl font-bold text-wood-darker">
+                <span class="text-accent" data-i18n-key="logo.prefix">海島</span><span data-i18n-key="logo.suffix">嶼光</span>
+            </a>
+             <nav class="hidden md:flex items-center space-x-2" id="desktop-menu-items">
+                <a href="#hero" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.home">首頁</a>
+                <a href="#about" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.about">關於我們</a>
+                <a href="#rooms" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.rooms">房型介紹</a>
+                <a href="#tours" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.tours">在地體驗</a>
+                <a href="#offers" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.offers">優惠活動</a>
+                <a href="#location" class="text-wood-darker hover:text-accent rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.location">交通資訊</a>
+                <a href="#contact" class="bg-accent text-white px-3 py-1.5 rounded-full hover:bg-amber-600 transition duration-300 text-sm" data-i18n-key="nav.contact">立即預訂</a>
+
+                <div class="ml-3 border-l border-wood-dark pl-3 flex items-center space-x-2">
+                    <button id="lang-zh-btn" type="button" class="lang-btn active" data-lang="zh-TW">繁體</button>
+                    <button id="lang-en-btn" type="button" class="lang-btn" data-lang="en">EN</button>
+                </div>
+
+                 </nav>
+             <button id="mobile-menu-button" class="md:hidden text-wood-darker">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div id="mobile-menu-items">
+                <a href="#hero" class="mobile-nav-link" data-i18n-key="nav.home">首頁</a>
+                <a href="#about" class="mobile-nav-link" data-i18n-key="nav.about">關於我們</a>
+                <a href="#rooms" class="mobile-nav-link" data-i18n-key="nav.rooms">房型介紹</a>
+                <a href="#tours" class="mobile-nav-link" data-i18n-key="nav.tours">在地體驗</a>
+                <a href="#offers" class="mobile-nav-link" data-i18n-key="nav.offers">優惠活動</a>
+                <a href="#location" class="mobile-nav-link" data-i18n-key="nav.location">交通資訊</a>
+                <a href="#contact" class="mobile-nav-link" data-i18n-key="nav.contact">立即預訂</a>
+                 <div class="pt-2 mt-2 border-t border-wood-dark flex items-center justify-center space-x-4">
+                    <button id="lang-zh-btn-mobile" type="button" class="lang-btn active" data-lang="zh-TW">繁體</button>
+                    <button id="lang-en-btn-mobile" type="button" class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <section id="hero" class="relative h-[70vh] min-h-[450px] flex items-center justify-center text-center text-white rounded-lg mx-4 overflow-hidden">
+             <img src="images/lanyu-hero.png" alt="蘭嶼壯闊的海景與拼板舟"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/1400x700/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'"
+                  data-i18n-key="hero.image_alt">
+             <div class="relative z-10 p-6 rounded-lg bg-black bg-opacity-30"> <h1 class="text-4xl md:text-6xl font-bold mb-2 text-white text-shadow" data-i18n-key="hero.title">迎接蘭嶼的陽光與海風</h1>
+                <p class="text-xl md:text-2xl italic text-primary-light mt-2 mb-4 text-shadow" data-i18n-key="hero.slogan">不只看見風景，更住進蘭嶼的日常與故事裡。</p>
+                <p class="text-lg md:text-xl mb-6 text-neutral-extralight text-shadow" data-i18n-key="hero.subtitle">在海島嶼光，與山海共生，體驗最真實的蘭嶼時光。</p>
+                <a href="#rooms" class="bg-accent text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-amber-600 transition duration-300" data-i18n-key="hero.button">探索房型</a>
+            </div>
+        </section>
+
+        <section id="highlights" class="bg-white py-12 -mt-10 relative z-20 mx-auto max-w-6xl rounded-lg shadow-xl border border-wood-light">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <a href="#rooms" class="group block p-4 rounded-lg hover:bg-wood-extralight transition duration-300">
+                        <div class="text-4xl mb-2">🏠</div>
+                        <h3 class="text-lg font-semibold text-wood-dark mb-1 group-hover:text-primary" data-i18n-key="highlights.rooms.title">特色房型</h3>
+                        <p class="text-sm text-neutral-dark" data-i18n-key="highlights.rooms.desc">海景/山景，體驗在地風格</p>
+                    </a>
+                    <a href="#tours" class="group block p-4 rounded-lg hover:bg-wood-extralight transition duration-300">
+                         <div class="text-4xl mb-2">🛶</div>
+                        <h3 class="text-lg font-semibold text-wood-dark mb-1 group-hover:text-primary" data-i18n-key="highlights.tours.title">文化體驗</h3>
+                        <p class="text-sm text-neutral-dark" data-i18n-key="highlights.tours.desc">拼板舟、地下屋，深度導覽</p>
+                    </a>
+                    <a href="#location" class="group block p-4 rounded-lg hover:bg-wood-extralight transition duration-300">
+                         <div class="text-4xl mb-2">📍</div>
+                        <h3 class="text-lg font-semibold text-wood-dark mb-1 group-hover:text-primary" data-i18n-key="highlights.location.title">絕佳位置</h3>
+                        <p class="text-sm text-neutral-dark" data-i18n-key="highlights.location.desc">鄰近部落，交通便利</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container mx-auto px-6 pt-16 pb-16">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                     <h2 class="text-3xl font-bold text-wood-dark mb-4" data-i18n-key="about.title">心之所向，人之島嶼光</h2>
+                    <p class="mb-4 leading-relaxed" data-i18n-key="about.p1"> 海島嶼光不只是一間民宿，它是我們對這片海島的愛，一個想和旅人分享蘭嶼美好的心意。我們在寧靜的部落旁，打造了一個融合達悟傳統和現代舒適的角落，希望你來這裡不只睡得好，更能感受家的溫暖。
+                    </p>
+                    <p class="leading-relaxed" data-i18n-key="about.p2"> 我們超愛這片土地！蘭嶼的故事、傳說、還有那些美到不行的風景，都想說給你聽。來作客吧！跟我們一起大口呼吸太平洋的空氣～
+                    </p>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg border-4 border-wood-light">
+                     <img src="images/about-exterior.jpg" alt="海島嶼光民宿外觀，融合現代與達悟風格" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/34d399/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="about.image_alt">
+                </div>
+            </div>
+        </section>
+
+        <section id="rooms" class="bg-white py-16 rounded-lg mx-4 shadow-lg transition-colors duration-300">
+            <div class="container mx-auto px-6">
+                 <h2 class="text-3xl font-bold text-center text-wood-dark mb-10" data-i18n-key="rooms.title">伴海入眠，山海為家</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                     <div class="border border-wood-light bg-wood-extralight rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                        <img src="images/room-ocean.jpg" alt="海景雙人房內部，窗外可見藍色大海" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="rooms.ocean.image_alt">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-primary mb-2" data-i18n-key="rooms.ocean.name">海景雙人房</h3>
+                            <p class="text-neutral-dark text-sm mb-4 flex-grow" data-i18n-key="rooms.ocean.desc">想像一下，張開眼就是無敵海景，聽著浪聲入睡，多棒！</p>
+                            <span class="text-lg font-bold text-accent mt-auto" data-i18n-key="rooms.ocean.price">NT$ 3,500 / 晚</span>
+                            <a href="#contact" class="mt-4 inline-block text-center bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-amber-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                     <div class="border border-wood-light bg-wood-extralight rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                        <img src="images/room-mountain.jpg" alt="山景四人房內部，空間寬敞，窗外綠意盎然" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/6ee7b7/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="rooms.mountain.image_alt">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-secondary mb-2" data-i18n-key="rooms.mountain.name">山景四人房</h3>
+                            <p class="text-neutral-dark text-sm mb-4 flex-grow" data-i18n-key="rooms.mountain.desc">空間超寬敞！最適合一家人或好朋友們窩在一起，窗外就是一片綠意。</p>
+                            <span class="text-lg font-bold text-accent mt-auto" data-i18n-key="rooms.mountain.price">NT$ 5,000 / 晚</span>
+                            <a href="#contact" class="mt-4 inline-block text-center bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-amber-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                     <div class="border border-wood-light bg-wood-extralight rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                        <img src="images/room-dorm.jpg" alt="背包客雅房內部，簡潔舒適的床位" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/c4b5fd/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="rooms.dorm.image_alt">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2" data-i18n-key="rooms.dorm.name">部落雅房 (背包客)</h3>
+                            <p class="text-neutral-dark text-sm mb-4 flex-grow" data-i18n-key="rooms.dorm.desc">預算有限？想認識新朋友？背包客雅房是你的好選擇，一起分享旅行的快樂吧！</p>
+                            <span class="text-lg font-bold text-accent mt-auto" data-i18n-key="rooms.dorm.price">NT$ 800 / 床</span>
+                            <a href="#contact" class="mt-4 inline-block text-center bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-amber-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                    <div class="border border-wood-light bg-wood-extralight rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                        <img src="images/room-suite.jpg" alt="文化體驗套房內部，裝飾有達悟族圖騰或工藝品" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/d2b48c/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="rooms.suite.image_alt">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold text-wood-dark mb-2" data-i18n-key="rooms.suite.name">文化體驗套房</h3>
+                            <p class="text-neutral-dark text-sm mb-4 flex-grow" data-i18n-key="rooms.suite.desc">房間裡藏著達悟的傳統工藝巧思，讓你住得舒服，也更貼近在地文化。</p>
+                            <span class="text-lg font-bold text-accent mt-auto" data-i18n-key="rooms.suite.price">NT$ 4,200 / 晚</span>
+                            <a href="#contact" class="mt-4 inline-block text-center bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-amber-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </secti
