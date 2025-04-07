@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。" data-i18n-key="meta.description">
+    <title>夏天 - 蘭嶼民宿</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/"> <meta property="og:title" content="夏天 - 蘭嶼民宿">
+    <meta property="og:description" content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。">
+    <meta property="og:image" content="images/lanyu-hero.png"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/"> <meta property="twitter:title" content="夏天 - 蘭嶼民宿">
+    <meta property="twitter:description" content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。">
+    <meta property="twitter:image" content="images/lanyu-hero.png"> <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: { light: '#ade8f4', DEFAULT: '#0077b6', dark: '#023e8a' },
+                        secondary: { light: '#34d399', DEFAULT: '#059669', dark: '#047857' },
+                        accent: '#f59e0b',
+                        wood: { extralight: '#f5f5dc', light: '#d2b48c', DEFAULT: '#c19a6b', dark: '#8b5a2b', darker: '#5a3a1a' },
+                        neutral: { light: '#f8f9fa', DEFAULT: '#6c757d', dark: '#343a40', extralight: '#e9ecef', darker: '#212529' }
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 深色模式：黑色背景 + 淺灰文字 */
+        body { font-family: 'Noto Sans TC', 'Inter', sans-serif; @apply transition-colors duration-300 bg-white dark:bg-black text-neutral-dark dark:text-gray-300; }
+        section[id] { scroll-margin-top: 70px; }
+        .lang-btn { @apply px-3 py-1 rounded-md transition-colors duration-200; }
+        /* 深色模式 active 按鈕 */
+        .lang-btn.active { @apply bg-accent dark:bg-gray-700 text-white dark:text-gray-100 font-semibold; }
+        /* 深色模式非 active 按鈕 */
+        .lang-btn:not(.active) { @apply text-wood-darker dark:text-gray-300 hover:bg-wood-DEFAULT dark:hover:bg-gray-700; }
+        /* 深色模式手機選單 */
+        #mobile-menu-items { @apply absolute top-full left-0 right-0 bg-wood-light dark:bg-gray-800 shadow-lg p-4 pt-10 space-y-2 z-40; }
+        /* 深色模式手機選單連結 */
+        #mobile-menu-items a { @apply block px-3 py-2 rounded hover:bg-wood-DEFAULT dark:hover:bg-gray-700 text-wood-darker dark:text-gray-300 text-lg; }
+        .text-shadow { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
+        .map-container iframe {
+            @apply w-full block align-middle;
+        }
+        /* 深色模式 back-to-top 按鈕 */
+        #back-to-top { @apply fixed bottom-5 right-5 bg-accent dark:bg-gray-700 text-white dark:text-gray-100 p-3 rounded-full shadow-lg hidden z-50 transition-opacity duration-300 hover:bg-amber-600 dark:hover:bg-gray-600; }
+        #back-to-top.show { @apply block; }
+        /* 深色模式 theme toggle */
+        #theme-toggle-mobile {
+             @apply text-wood-darker dark:text-gray-300 hover:bg-wood-DEFAULT dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-wood-DEFAULT dark:focus:ring-gray-600 rounded-lg text-sm p-2;
+        }
+        #form-message { @apply mt-4 p-3 rounded-md text-base; }
+        /* 深色模式提示訊息 */
+        #form-message.success { @apply bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100; }
+        #form-message.error { @apply bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-100; }
+        /* 分享按鈕 SVG 顏色 */
+        .share-icon svg { @apply w-6 h-6; }
+        .share-icon { @apply text-gray-500 dark:text-gray-400 transition-colors; }
+        .share-icon.facebook:hover { @apply text-blue-600 dark:hover:text-blue-400; }
+        .share-icon.line:hover { @apply text-green-600 dark:hover:text-green-400; }
+        .share-icon.instagram:hover { @apply text-pink-600 dark:hover:text-pink-400; }
+        .share-icon.threads:hover { @apply text-black dark:hover:text-white; }
+        .share-icon.tiktok:hover { @apply text-black dark:hover:text-white; } /* TikTok 顏色較複雜，暫用黑白 */
+
+    </style>
+</head>
+<body>
+    <header class="bg-wood-light dark:bg-gray-800 shadow-md fixed top-0 left-0 right-0 z-50 rounded-b-lg transition-colors duration-300 border-b-4 border-accent dark:border-gray-700">
+        <div class="container mx-auto px-4 md:px-6 py-2 flex justify-between items-center">
+             <a href="#">
+                <img src="summer.jpg" alt="夏天民宿 Logo" class="h-20 md:h-24 w-auto rounded">
+             </a>
+             <nav class="hidden md:flex items-center space-x-1 lg:space-x-2" id="desktop-menu-items">
+                 <a href="#hero" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.home">首頁</a>
+                <a href="#about" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.about">關於我們</a>
+                <a href="#rooms" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.rooms">房型介紹</a>
+                <a href="#tours" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.tours">在地體驗</a>
+                <a href="#offers" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.offers">優惠活動</a>
+                <a href="#location" class="text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400 rounded p-2 transition duration-300 text-sm" data-i18n-key="nav.location">交通資訊</a>
+                 <a href="#contact" class="bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-3 py-1.5 rounded-full hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300 text-sm" data-i18n-key="nav.contact">立即預訂</a>
+
+                <div class="ml-2 lg:ml-3 border-l border-wood-dark dark:border-gray-700 pl-2 lg:pl-3 flex items-center space-x-1 lg:space-x-2">
+                    <button id="lang-zh-btn" type="button" class="lang-btn active text-sm" data-lang="zh-TW">繁體</button>
+                    <button id="lang-en-btn" type="button" class="lang-btn text-xs" data-lang="en">EN</button>
+                    <button id="theme-toggle" type="button" class="ml-2 text-wood-darker dark:text-gray-300 hover:bg-wood-DEFAULT dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-wood-DEFAULT dark:focus:ring-gray-600 rounded-lg text-sm p-2" data-i18n-key="nav.theme_toggle_aria_label" aria-label="Toggle theme">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </nav>
+             <button id="mobile-menu-button" class="md:hidden text-wood-darker dark:text-gray-300"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div id="mobile-menu-items" class="relative">
+                <button id="mobile-menu-close-button" class="absolute top-2 right-2 p-2 text-wood-darker dark:text-gray-300 hover:text-accent dark:hover:text-blue-400"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="#hero" class="mobile-nav-link" data-i18n-key="nav.home">首頁</a>
+                <a href="#about" class="mobile-nav-link" data-i18n-key="nav.about">關於我們</a>
+                <a href="#rooms" class="mobile-nav-link" data-i18n-key="nav.rooms">房型介紹</a>
+                <a href="#tours" class="mobile-nav-link" data-i18n-key="nav.tours">在地體驗</a>
+                <a href="#offers" class="mobile-nav-link" data-i18n-key="nav.offers">優惠活動</a>
+                <a href="#location" class="mobile-nav-link" data-i18n-key="nav.location">交通資訊</a>
+                <a href="#contact" class="mobile-nav-link" data-i18n-key="nav.contact">立即預訂</a>
+                 <div class="pt-2 mt-2 border-t border-wood-dark dark:border-gray-700 flex items-center justify-center space-x-4">
+                    <button id="lang-zh-btn-mobile" type="button" class="lang-btn active text-sm" data-lang="zh-TW">繁體</button>
+                    <button id="lang-en-btn-mobile" type="button" class="lang-btn text-xs" data-lang="en">EN</button>
+                    <button id="theme-toggle-mobile" type="button" data-i18n-key="nav.theme_toggle_aria_label" aria-label="Toggle theme">
+                        <svg id="theme-toggle-dark-icon-mobile" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon-mobile" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16 md:pt-20">
+        <section id="hero" class="relative h-[65vh] md:h-[70vh] min-h-[380px] md:min-h-[450px] flex items-center justify-center text-center text-white rounded-lg mx-2 md:mx-4 overflow-hidden">
+             <img src="images/lanyu-hero.png" alt="蘭嶼東清灣日出景色"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/1400x700/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'"
+                  data-i18n-key="hero.image_alt">
+             <div class="relative z-10 p-4 md:p-6 rounded-lg">
+                 <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-2 text-white text-shadow" data-i18n-key="hero.title">迎接蘭嶼的晨曦與浪濤</h1>
+                 <p class="text-lg md:text-xl lg:text-2xl italic text-primary-light dark:text-gray-100 mt-2 mb-3 md:mb-4 text-shadow" data-i18n-key="hero.slogan">入住東清部落，感受蘭嶼的夏日風情。</p>
+                <p class="text-base md:text-lg lg:text-xl mb-4 md:mb-6 text-neutral-extralight dark:text-gray-100 text-shadow" data-i18n-key="hero.subtitle">在夏天民宿，體驗最純粹的島嶼生活。</p>
+                 <a href="#rooms" class="bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-5 py-2 md:px-6 md:py-3 rounded-full text-lg md:text-xl font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300" data-i18n-key="hero.button">探索房型</a>
+            </div>
+        </section>
+
+        <section id="highlights" class="bg-white dark:bg-gray-800 py-8 md:py-10 lg:py-12 -mt-8 md:-mt-10 relative z-20 mx-auto max-w-6xl rounded-lg shadow-xl border border-wood-light dark:border-gray-700">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 text-center">
+                     <a href="#rooms" class="group block p-3 md:p-4 rounded-lg hover:bg-wood-extralight dark:hover:bg-gray-700 transition duration-300">
+                        <div class="text-3xl md:text-4xl mb-1 md:mb-2">☀️</div>
+                         <h3 class="text-lg md:text-xl font-semibold text-wood-dark dark:text-gray-100 mb-1 group-hover:text-primary dark:group-hover:text-blue-400" data-i18n-key="highlights.rooms.title">舒適房型</h3>
+                        <p class="text-sm md:text-base text-neutral-dark dark:text-gray-300" data-i18n-key="highlights.rooms.desc">背包客、雙人、四人房選擇</p>
+                    </a>
+                    <a href="#tours" class="group block p-3 md:p-4 rounded-lg hover:bg-wood-extralight dark:hover:bg-gray-700 transition duration-300">
+                         <div class="text-3xl md:text-4xl mb-1 md:mb-2">🌊</div>
+                        <h3 class="text-lg md:text-xl font-semibold text-wood-dark dark:text-gray-100 mb-1 group-hover:text-primary dark:group-hover:text-blue-400" data-i18n-key="highlights.tours.title">在地體驗</h3>
+                        <p class="text-sm md:text-base text-neutral-dark dark:text-gray-300" data-i18n-key="highlights.tours.desc">浮潛、拼板舟、環島導覽</p>
+                    </a>
+                    <a href="#location" class="group block p-3 md:p-4 rounded-lg hover:bg-wood-extralight dark:hover:bg-gray-700 transition duration-300">
+                         <div class="text-3xl md:text-4xl mb-1 md:mb-2">📍</div>
+                        <h3 class="text-lg md:text-xl font-semibold text-wood-dark dark:text-gray-100 mb-1 group-hover:text-primary dark:group-hover:text-blue-400" data-i18n-key="highlights.location.title">東清村中心</h3>
+                        <p class="text-sm md:text-base text-neutral-dark dark:text-gray-300" data-i18n-key="highlights.location.desc">鄰近海灘與日出景點</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container mx-auto px-4 md:px-6 pt-10 pb-10 md:pt-12 md:pb-16">
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
+                <div>
+                     <h2 class="text-3xl md:text-4xl font-bold text-wood-dark dark:text-gray-100 mb-3 md:mb-4" data-i18n-key="about.title">關於夏天民宿</h2>
+                     <p class="mb-3 md:mb-4 leading-relaxed text-base md:text-lg dark:text-gray-300" data-i18n-key="about.p1">
+                        夏天民宿座落於蘭嶼美麗的東清村，我們希望提供旅人一個像家一樣溫暖舒適的休憩空間。在這裡，您可以輕鬆步行至海邊，迎接每日的第一道曙光，感受太平洋的壯闊。
+                    </p>
+                    <p class="leading-relaxed text-base md:text-lg dark:text-gray-300" data-i18n-key="about.p2">
+                        我們熱愛蘭嶼的自然風光與達悟文化，也樂於與您分享島上的點點滴滴。無論是想放空、探險，或是深入體驗在地生活，夏天民宿都歡迎您的到來。
+                    </p>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-lg border-4 border-wood-light dark:border-gray-700">
+                     <img src="images/about-exterior.jpg" alt="夏天民宿外觀照片" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/34d399/ffffff?text=民宿照片待補'; this.alt='民宿照片待補'" data-i18n-key="about.image_alt">
+                </div>
+            </div>
+        </section>
+
+        <section id="rooms" class="bg-white dark:bg-gray-950 py-10 md:py-12 lg:py-16 rounded-lg mx-2 md:mx-4 shadow-lg transition-colors duration-300">
+            <div class="container mx-auto px-4 md:px-6">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center text-wood-dark dark:text-gray-100 mb-6 md:mb-8 lg:mb-10" data-i18n-key="rooms.title">我們的房型</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                     <div class="border border-wood-light dark:border-gray-700 bg-wood-extralight dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                        <img src="images/room-ocean.jpg" alt="夏天民宿精緻雙人房照片" class="w-full h-36 md:h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/ade8f4/ffffff?text=房間照片待補'; this.alt='房間照片待補'" data-i18n-key="rooms.ocean.image_alt">
+                        <div class="p-4 md:p-6 flex flex-col flex-grow">
+                             <h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-blue-400 mb-2" data-i18n-key="rooms.ocean.name">精緻雙人房</h3>
+                            <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.ocean.desc">精心佈置的空間，提供精緻舒適的住宿體驗。</p>
+                            <span class="text-lg md:text-xl font-bold text-accent dark:text-gray-100 mt-auto" data-i18n-key="rooms.ocean.price">NT$ 2,500 / 晚</span>
+                            <a href="#contact" class="mt-3 md:mt-4 inline-block text-center bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                     <div class="border border-wood-light dark:border-gray-700 bg-wood-extralight dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                         <img src="images/room-mountain.jpg" alt="夏天民宿家庭四人房照片" class="w-full h-36 md:h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/6ee7b7/ffffff?text=房間照片待補'; this.alt='房間照片待補'" data-i18n-key="rooms.mountain.image_alt">
+                        <div class="p-4 md:p-6 flex flex-col flex-grow">
+                             <h3 class="text-xl md:text-2xl font-semibold text-secondary dark:text-emerald-400 mb-2" data-i18n-key="rooms.mountain.name">家庭四人房</h3>
+                            <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.mountain.desc">適合全家出遊的寬敞房型，共享歡樂時光。</p>
+                             <span class="text-lg md:text-xl font-bold text-accent dark:text-gray-100 mt-auto" data-i18n-key="rooms.mountain.price">NT$ 3,000 / 晚</span>
+                             <a href="#contact" class="mt-3 md:mt-4 inline-block text-center bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                     <div class="border border-wood-light dark:border-gray-700 bg-wood-extralight dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+                         <img src="images/room-dorm.jpg" alt="夏天民宿背包客床位照片" class="w-full h-36 md:h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/c4b5fd/ffffff?text=房間照片待補'; this.alt='房間照片待補'" data-i18n-key="rooms.dorm.image_alt">
+                        <div class="p-4 md:p-6 flex flex-col flex-grow">
+                             <h3 class="text-xl md:text-2xl font-semibold text-purple-600 dark:text-purple-400 mb-2" data-i18n-key="rooms.dorm.name">背包客床位</h3>
+                            <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.dorm.desc">經濟實惠的選擇，認識來自各地的旅人，分享旅行故事。</p>
+                             <span class="text-lg md:text-xl font-bold text-accent dark:text-gray-100 mt-auto" data-i18n-key="rooms.dorm.price">NT$ 800 / 床</span>
+                             <a href="#contact" class="mt-3 md:mt-4 inline-block text-center bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="tours" class="container mx-auto px-4 md:px-6 py-10 md:py-12 lg:py-16">
+             <h2 class="text-3xl md:text-4xl font-bold text-center text-wood-dark dark:text-gray-100 mb-6 md:mb-8 lg:mb-10" data-i18n-key="tours.title">探索蘭嶼之美</h2>
+             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                      <img src="images/tour-snorkeling.png" alt="浮潛面罩和呼吸管圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.snorkeling.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-primary dark:text-blue-400 mb-1 md:mb-2" data-i18n-key="tours.snorkeling.name">浮潛體驗</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.snorkeling.desc">跳進蘭嶼的玻璃海，跟五顏六色的熱帶魚一起游泳吧！</p>
+                </div>
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                         <img src="images/tour-canoe.png" alt="達悟族拼板舟圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/f59e0b/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.canoe.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-accent dark:text-amber-500 mb-1 md:mb-2" data-i18n-key="tours.canoe.name">拼板舟體驗</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.canoe.desc">（飛魚季限定）坐上達悟族人親手造的拼板舟，感受乘風破浪的古老智慧。</p>
+                </div>
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                         <img src="images/tour-island.png" alt="蘭嶼地圖或機車環島圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/34d399/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.island.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-secondary dark:text-emerald-400 mb-1 md:mb-2" data-i18n-key="tours.island.name">環島導覽</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.island.desc">騎上機車跟著我們走！帶你去看蘭嶼最美的角落，聽聽在地的故事。</p>
+                </div>
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                          <img src="images/tour-owl.png" alt="蘭嶼角鴞圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/f9a8d4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.owl.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-pink-800 dark:text-pink-400 mb-1 md:mb-2" data-i18n-key="tours.owl.name">夜觀角鴞</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.owl.desc">天黑了才精彩！一起去尋找蘭嶼特有的貓頭鷹「角鴞」，體驗神祕的夜生活。</p>
+                </div>
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                        <img src="images/tour-intertidal.png" alt="潮間帶生物如螃蟹、海星圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/a5b4fc/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.intertidal.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-indigo-700 dark:text-indigo-400 mb-1 md:mb-2" data-i18n-key="tours.intertidal.name">夜觀潮間帶</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.intertidal.desc">等潮水退去，海邊的石頭下藏著好多驚喜！帶手電筒來探險吧！</p>
+                </div>
+                 <div class="text-center p-4 md:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition border border-wood-light dark:border-gray-700 dark:hover:bg-gray-700">
+                       <img src="images/tour-underground.png" alt="達悟族地下屋圖示" class="w-28 h-20 md:w-40 md:h-32 object-cover rounded-md mb-3 md:mb-4 mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/160x120/c19a6b/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" data-i18n-key="tours.underground.image_alt">
+                     <h4 class="font-semibold text-lg md:text-xl text-wood-dark dark:text-gray-100 mb-1 md:mb-2" data-i18n-key="tours.underground.name">地下屋導覽</h4>
+                    <p class="text-sm md:text-base dark:text-gray-300" data-i18n-key="tours.underground.desc">走進達悟族人冬暖夏涼的地下屋，聽聽老祖宗的建築智慧和生活故事。</p>
+                </div>
+            </div>
+
+            <div class="mt-10 md:mt-12 lg:mt-16 pt-8 md:pt-10 lg:pt-12 border-t border-wood-light dark:border-gray-700">
+                 <h3 class="text-2xl md:text-3xl font-semibold text-center text-wood-dark dark:text-gray-100 mb-4 md:mb-6" data-i18n-key="tours.festivals_subtitle">重要文化節慶</h3>
+                 <p class="text-center mb-5 md:mb-8 max-w-2xl mx-auto text-base md:text-lg dark:text-gray-300" data-i18n-key="tours.festivals_intro">
+                    蘭嶼是達悟族（Tao族）聚居地，擁有獨特的文化與傳統節慶。這些節日對當地人意義重大，也吸引許多文化型旅客前來參與或觀察。
+                </p>
+                 <div class="overflow-x-auto rounded-lg border border-wood-light dark:border-gray-700 shadow-md bg-white dark:bg-gray-800">
+                     <table class="w-full text-sm md:text-base text-left">
+                        <thead class="text-xs md:text-sm uppercase bg-wood-extralight dark:bg-gray-700 text-neutral-dark dark:text-gray-300">
+                            <tr>
+                                <th scope="col" class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.name">節日名稱</th>
+                                <th scope="col" class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.time">時間</th>
+                                <th scope="col" class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.desc">內容簡介</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-neutral-dark dark:text-gray-300">
+                             <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-wood-extralight dark:hover:bg-gray-700 transition">
+                                <th scope="row" class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap" data-i18n-key="tours.festivals_table.flying_fish.name">飛魚季（Flying Fish Festival）</th>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.flying_fish.time">約 2～6 月</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.flying_fish.desc">達悟族人尊崇飛魚為海洋贈禮，期間禁忌繁多，包括禁捕其他魚種、男女分工明確、舉行祭儀等。是蘭嶼最具代表性的文化活動。</td>
+                            </tr>
+                             <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-wood-extralight dark:hover:bg-gray-700 transition">
+                                <th scope="row" class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap" data-i18n-key="tours.festivals_table.boat_launch.name">小船下水祭（Launching of the Tatala）</th>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.boat_launch.time">飛魚季前夕</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.boat_launch.desc">傳統拼板舟「tatala」下水儀式，伴隨歌舞與祈福，是部落重大儀式。觀光客須尊重儀式，不可亂拍或靠近。</td>
+                            </tr>
+                             <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-wood-extralight dark:hover:bg-gray-700 transition">
+                                <th scope="row" class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap" data-i18n-key="tours.festivals_table.harvest.name">收穫祭 / 年終感恩祭</th>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.harvest.time">約 9～11 月</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.harvest.desc">部落族人感謝祖靈與自然的祭典，不對外公開，具有高度神聖性。建議以尊重的距離觀察。</td>
+                            </tr>
+                             <tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-wood-extralight dark:hover:bg-gray-700 transition">
+                                <th scope="row" class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap" data-i18n-key="tours.festivals_table.music.name">島嶼音樂節（蘭嶼海洋音樂會）</th>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.music.time">不定期（夏季為主）</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.music.desc">青年自辦音樂活動，推廣部落文化、原創音樂，吸引年輕族群與音樂旅客。</td>
+                            </tr>
+                             <tr class="bg-white dark:bg-gray-800 hover:bg-wood-extralight dark:hover:bg-gray-700 transition">
+                                <th scope="row" class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap" data-i18n-key="tours.festivals_table.sports.name">蘭嶼環島馬拉松 / 鐵人三項賽事</th>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.sports.time">每年夏末或秋初</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.sports.desc">結合海景與文化的體育活動，越來越多外來旅客參加。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 </div>
+        </section>
+
+        <section id="offers" class="bg-wood-light dark:bg-gray-950 py-10 md:py-12 lg:py-16 rounded-lg mx-2 md:mx-4 shadow-lg transition-colors duration-300">
+            <div class="container mx-auto px-4 md:px-6">
+                 <h2 class="text-3xl md:text-4xl font-bold text-center text-accent dark:text-gray-100 mb-6 md:mb-8 lg:mb-10" data-i18n-key="offers.title">夏日限定優惠</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 p-4 md:p-6 border-t-4 border-accent dark:border-gray-600 flex flex-col">
+                         <h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-blue-400 mb-2 md:mb-3" data-i18n-key="offers.earlybird.title">早鳥預訂優惠</h3>
+                        <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="offers.earlybird.desc">
+                            想搶便宜趁現在！提前 30 天預訂連住兩晚以上，直接給你房價 9 折！快來提早卡位你的蘭嶼慢活之旅～
+                        </p>
+                        <a href="#contact" class="mt-auto inline-block bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300 text-center" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                    </div>
+                     <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 p-4 md:p-6 border-t-4 border-accent dark:border-gray-600 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-blue-400 mb-2 md:mb-3" data-i18n-key="offers.student.title">學生畢旅專案</h3>
+                        <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="offers.student.desc">
+                            青春就是要熱血！揪團來蘭嶼畢旅，憑學生證訂房達指定人數，送你機車折扣或神秘好禮！
+                        </p>
+                        <a href="#contact" class="mt-auto inline-block bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300 text-center" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 p-4 md:p-6 border-t-4 border-accent dark:border-gray-600 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-blue-400 mb-2 md:mb-3" data-i18n-key="offers.weekday_voucher.title">淡季平日住宿券</h3>
+                        <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="offers.weekday_voucher.desc">
+                            想避開人潮，靜靜享受蘭嶼的美？買張淡季平日住宿券最划算，使用更彈性，荷包也開心！
+                        </p>
+                        <a href="#contact" class="mt-auto inline-block bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300 text-center" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                    </div>
+                     <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 p-4 md:p-6 border-t-4 border-accent dark:border-gray-600 flex flex-col">
+                        <h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-blue-400 mb-2 md:mb-3" data-i18n-key="offers.package_deal.title">寒暑假專案</h3>
+                        <p class="text-neutral-dark dark:text-gray-300 text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="offers.package_deal.desc">
+                            把握寒暑假長假！揪好友或家人來蘭嶼放鬆，入住夏天民宿搭配行程或交通，享專屬優惠！
+                        </p>
+                        <a href="#contact" class="mt-auto inline-block bg-accent dark:bg-gray-700 text-white dark:text-gray-100 px-4 py-1 rounded-full text-sm md:text-base font-semibold hover:bg-amber-600 dark:hover:bg-gray-600 transition duration-300 text-center" data-i18n-key="offers.contact_us">立即洽詢 »</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="container mx-auto px-4 md:px-6 py-10 md:py-12 lg:py-16">
+             <h2 class="text-3xl md:text-4xl font-bold text-center text-wood-dark dark:text-gray-100 mb-6 md:mb-8 lg:mb-10" data-i18n-key="location.title">交通資訊</h2>
+             <div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start">
+                  <div class="leading-relaxed text-base md:text-lg dark:text-gray-300">
+                     <h3 class="text-xl md:text-2xl font-semibold text-wood-dark dark:text-gray-100 mb-2 md:mb-3" data-i18n-key="location.address_title">民宿地址</h3>
+                      <p class="mb-4 md:mb-6" data-i18n-key="location.address_detail">蘭嶼鄉東清村48號</p>
+
+                     <h3 class="text-xl md:text-2xl font-semibold text-wood-dark dark:text-gray-100 mb-2 md:mb-3" data-i18n-key="location.transport_title">如何前往蘭嶼</h3>
+                     <ul class="list-disc list-inside mb-4 md:mb-6 space-y-1 md:space-y-2">
+                         <li data-i18n-key="location.transport_plane"><strong class="text-secondary dark:text-emerald-400">搭乘飛機：</strong>從「台東豐年機場」搭乘德安航空19人座小飛機前往「蘭嶼航空站」(約25分鐘)。</li>
+                         <li data-i18n-key="location.transport_ferry"><strong class="text-primary dark:text-blue-400">搭乘船班：</strong>從「台東富岡漁港」或「墾丁後壁湖」搭乘客輪前往「蘭嶼開元港」(航程約2-2.5小時)。</li>
+                     </ul>
+
+                     <h3 class="text-xl md:text-2xl font-semibold text-wood-dark dark:text-gray-100 mb-2 md:mb-3" data-i18n-key="location.arrival_title">抵達民宿</h3>
+                      <p class="mb-3 md:mb-4" data-i18n-key="location.arrival_intro">
+                         抵達蘭嶼後，島上主要交通工具為機車。您可以：
+                     </p>
+                      <ul class="list-disc list-inside space-y-1 md:space-y-2">
+                          <li data-i18n-key="location.arrival_option1">自行於機場/港口附近租賃機車，再騎車前往民宿。</li>
+                          <li data-i18n-key="location.arrival_option2">事先聯繫我們，我們可以協助代訂機車或安排接送服務 (可能需額外收費)。</li>
+                          <li data-i18n-key="location.arrival_option3"></li>
+                      </ul>
+                 </div>
+
+                 <div class="map-container rounded-lg overflow-hidden shadow-lg border border-wood-DEFAULT dark:border-gray-700">
+                     <iframe
+                         src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d41046.96214306704!2d121.53661396531136!3d22.02642467963471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5p2x5riF5p2RNDjomZ8!5e0!3m2!1szh-TW!2stw!4v1743947623044!5m2!1szh-TW!2stw"
+                         width="100%" height="350" style="border:0;"
+                         allowfullscreen=""
+                         loading="lazy"
+                         referrerpolicy="no-referrer-when-downgrade"
+                         title="夏天民宿 Google 地圖位置">
+                     </iframe>
+                 </div>
+             </div>
+             <img src="summer.jpg" alt="夏天民宿 Logo" class="h-24 w-auto mx-auto mt-8 rounded opacity-80 dark:opacity-60">
+        </section>
+
+        <section id="contact" class="bg-wood-dark dark:bg-gray-800 text-wood-extralight dark:text-gray-300 py-10 md:py-12 lg:py-16 rounded-lg mx-2 md:mx-4 shadow-lg transition-colors duration-300">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                   <h2 class="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white dark:text-gray-100" data-i18n-key="contact.title">聯絡夏天民宿</h2>
+                 <p class="text-lg md:text-xl mb-6 md:mb-8" data-i18n-key="contact.subtitle">
+                    有任何疑問，或是心動想訂房了？別害羞，透過下面任何一個方式聯絡我們吧！
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start mt-6 md:mt-10">
+                     <div class="text-base md:text-lg text-left space-y-2 md:space-y-4 flex flex-col"> <p><strong class="text-accent dark:text-amber-400">電話:</strong> 0982-924-641 (鄭先生)</p>
+                         <p><strong class="text-accent dark:text-amber-400">Line ID:</strong> @203nkapz</p>
+                         <p><strong class="text-accent dark:text-amber-400">地址:</strong> <span data-i18n-key="contact.address_detail">蘭嶼鄉東清村48號</span></p>
+                         <p>
+                            <strong class="text-accent dark:text-amber-400">Instagram:</strong>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="hover:underline dark:hover:text-amber-300">
+                                (民宿 IG 連結)
+                            </a>
+                        </p>
+                        <p>
+                            <strong class="text-accent dark:text-amber-400">Facebook:</strong>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="hover:underline dark:hover:text-amber-300" data-i18n-key="contact.fb_value">
+                                (民宿 FB 粉絲專頁)
+                            </a>
+                        </p>
+                         <img src="summer.jpg" alt="夏天民宿 Logo" class="h-64 w-auto mt-8 rounded opacity-80 dark:opacity-60 self-start">
+                     </div>
+                    <form id="contact-form" action="#" method="POST" class="space-y-3 md:space-y-4 text-left">
+                        <div>
+                            <label for="name" class="block mb-1 text-sm md:text-base font-medium" data-i18n-key="contact.form.name_label">姓名</label>
+                            <input type="text" id="name" name="name" class="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-md border border-wood-light bg-white dark:bg-gray-700 text-neutral-dark dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-amber-500 dark:border-gray-600 text-base md:text-lg" required data-i18n-key="contact.form.name_placeholder" placeholder="請輸入您的姓名">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-1 text-sm md:text-base font-medium" data-i18n-key="contact.form.email_label">電子郵件</label>
+                            <input type="email" id="email" name="email" class="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-md border border-wood-light bg-white dark:bg-gray-700 text-neutral-dark dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-amber-500 dark:border-gray-600 text-base md:text-lg" required data-i18n-key="contact.form.email_placeholder" placeholder="example@email.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block mb-1 text-sm md:text-base font-medium" data-i18n-key="contact.form.phone_label">聯絡電話</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-md border border-wood-light bg-white dark:bg-gray-700 text-neutral-dark dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-amber-500 dark:border-gray-600 text-base md:text-lg" data-i18n-key="contact.form.phone_placeholder" placeholder="您的聯絡電話 (選填)">
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-1 text-sm md:text-base font-medium" data-i18n-key="contact.form.subject_label">主旨 / 預計入住日期</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-md border border-wood-light bg-white dark:bg-gray-700 text-neutral-dark dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-amber-500 dark:border-gray-600 text-base md:text-lg" required data-i18n-key="contact.form.subject_placeholder" placeholder="例如：訂房詢問 2025/07/10 - 07/12">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-1 text-sm md:text-base font-medium" data-i18n-key="contact.form.message_label">您的訊息</label>
+                            <textarea id="message" name="message" rows="3" class="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-md border border-wood-light bg-white dark:bg-gray-700 text-neutral-dark dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-accent dark:focus:ring-amber-500 dark:border-gray-600 text-base md:text-lg" required data-i18n-key="contact.form.message_placeholder" placeholder="請在此輸入您的問題或訂房需求..."></textarea>
+                        </div>
+                        <div>
+                             <button type="submit" class="w-full px-5 py-2 md:px-6 md:py-3 bg-accent dark:bg-gray-600 text-white dark:text-gray-100 font-semibold rounded-md hover:bg-amber-600 dark:hover:bg-gray-500 transition duration-300 text-base md:text-lg" data-i18n-key="contact.form.submit_button">
+                                送出訊息
+                            </button>
+                        </div>
+                        <div id="form-message" class="hidden"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-wood-light dark:bg-gray-800 text-wood-darker dark:text-gray-300 py-6 md:py-8 mt-10 md:mt-16 rounded-t-lg transition-colors duration-300 border-t-4 border-accent dark:border-gray-700">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="mb-4 flex justify-center space-x-4">
+                <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="share-icon facebook" title="分享到 Facebook">
+                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a id="share-line" href="#" target="_blank" rel="noopener noreferrer" class="share-icon line" title="分享到 Line">
+                    <svg fill="currentColor" viewBox="0 0 128 128"><path d="M118.38 32.94c-1.16-5.34-4.14-10.04-8.38-13.52-4.38-3.58-9.8-5.68-15.64-5.88-11.48-.4-22.6 4.4-30.64 12.88h-.06c-8.04-8.48-19.16-13.28-30.64-12.88-5.86.2-11.28 2.3-15.68 5.88-4.24 3.48-7.22 8.18-8.36 13.52-1.9 8.96-1.02 18.3 2.6 26.74 0 0 8.86 19.86 25.1 35.16 14.82 13.96 26.86 24.16 33.4 28.6h.18c6.54-4.44 18.58-14.64 33.4-28.6C111.52 79.54 120.38 59.7 120.38 59.7c3.6-8.44 4.48-17.78 2.6-26.76h-4.6zm-59.1 73.68h-.14c-4.9-3.34-16.08-12.88-30.7-26.68-15.66-14.8-23.44-29.92-24.7-33.4-.86-2.28-1.5-4.76-1.88-7.38-.76-5.08-.54-10.18 1.14-14.88 1.02-2.8 2.92-5.4 5.4-7.34 2.6-2.02 5.64-3.2 8.9-3.34 9.48-.34 18.44 3.58 25.32 10.78l2.4 2.54 2.4-2.54c6.88-7.2 15.84-11.12 25.34-10.78 3.24.14 6.28 1.32 8.88 3.34 2.48 1.94 4.38 4.54 5.4 7.34 1.68 4.7 1.9 9.8 1.14 14.88-.38 2.62-1.02 5.1-1.88 7.38-1.28 3.48-9.06 18.6-24.7 33.4-14.64 13.8-25.82 23.34-30.72 26.68z"></path><path d="M89.88 58.78c-.52-1.44-1.44-2.66-2.64-3.56-1.18-.88-2.56-1.42-4.02-1.56-2.9-.28-5.68.46-7.82 2.02-1.64 1.22-2.82 2.9-3.38 4.82-.58 1.96-.52 4.04.04 5.98.52 1.78 1.54 3.36 2.94 4.56 1.94 1.66 4.36 2.6 6.9 2.72h.12c2.54-.12 4.96-1.06 6.9-2.72 1.4-1.2 2.42-2.78 2.94-4.56.56-1.94.62-4.02.04-5.98-.56-1.92-1.74-3.6-3.38-4.82-2.14-1.56-4.92-2.3-7.82-2.02-1.46.14-2.84.68-4.02 1.56-1.2 1.16-2.12 2.38-2.64 3.56-.44 1.2-.6 2.48-.48 3.78.12 1.28.54 2.52 1.2 3.62.96 1.64 2.36 2.98 4.04 3.88 1.54.82 3.24 1.24 4.96 1.24h.14c1.72 0 3.42-.42 4.96-1.24 1.68-.9 3.08-2.24 4.04-3.88.66-1.1.94-2.34 1.2-3.62.12-1.3-.04-2.58-.48-3.78zM38.14 58.78c-.52-1.44-1.44-2.66-2.64-3.56-1.18-.88-2.56-1.42-4.02-1.56-2.9-.28-5.68.46-7.82 2.02-1.64 1.22-2.82 2.9-3.38 4.82-.58 1.96-.52 4.04.04 5.98.52 1.78 1.54 3.36 2.94 4.56 1.94 1.66 4.36 2.6 6.9 2.72h.12c2.54-.12 4.96-1.06 6.9-2.72 1.4-1.2 2.42-2.78 2.94-4.56.56-1.94.62-4.02.04-5.98-.56-1.92-1.74-3.6-3.38-4.82-2.14-1.56-4.92-2.3-7.82-2.02-1.46.14-2.84.68-4.02 1.56-1.2 1.16-2.12 2.38-2.64 3.56-.44 1.2-.6 2.48-.48 3.78.12 1.28.54 2.52 1.2 3.62.96 1.64 2.36 2.98 4.04 3.88 1.54.82 3.24 1.24 4.96 1.24h.14c1.72 0 3.42-.42 4.96-1.24 1.68-.9 3.08-2.24 4.04-3.88.66-1.1.94-2.34 1.2-3.62.12-1.3-.04-2.58-.48-3.78z"></path></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="share-icon instagram" title="分享到 Instagram (連結至個人資料)">
+                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 3.808s-.012 2.741-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-3.808.06s-2.741-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.067-.06-1.407-.06-3.808s.012-2.741.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.001 1.802c-2.445 0-2.784.011-3.807.058-.975.045-1.504.207-1.957.372a3.096 3.096 0 00-1.151.748 3.098 3.098 0 00-.748 1.151c-.165.453-.327.982-.372 1.957-.046 1.023-.058 1.362-.058 3.807s.012 2.784.058 3.807c.045.975.207 1.504.372 1.957a3.096 3.096 0 00.748 1.151 3.098 3.098 0 001.151.748c.453.165.982.327 1.957.372 1.023.046 1.362.058 3.807.058s2.784-.012 3.807-.058c.975-.045 1.504-.207 1.957-.372a3.096 3.096 0 001.151-.748 3.098 3.098 0 00.748-1.151c.165-.453.327-.982.372-1.957.046-1.023.058-1.362.058-3.807s-.012-2.784-.058-3.807c-.045-.975-.207-1.504-.372-1.957a3.096 3.096 0 00-.748-1.151 3.098 3.098 0 00-1.151-.748c-.453-.165-.982-.327-1.957-.372-1.023-.046-1.362-.058-3.807-.058zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 1.802a3.333 3.333 0 110 6.666 3.333 3.333 0 010-6.666zm5.338-3.205a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="share-icon threads" title="分享到 Threads (連結至個人資料)">
+                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.12 4.992c.318-.004.636-.004.954-.004.77 0 1.538.01 2.301.03.89.025 1.774.09 2.64.217a5.78 5.78 0 0 1 2.066.736 4.33 4.33 0 0 1 1.617 1.616 5.78 5.78 0 0 1 .736 2.066c.127.866.192 1.75.217 2.64.02 1.03.03 2.06.03 3.091 0 .318-.001.636-.004.954a10.7 10.7 0 0 1-.04 1.185 5.8 5.8 0 0 1-.213 1.47 4.33 4.33 0 0 1-1.617 1.617 5.78 5.78 0 0 1-2.066.736c-.866.127-1.75.192-2.64.217-1.03.02-2.06.03-3.091.03-.318 0-.636.001-.954.004a10.7 10.7 0 0 1-1.185-.04 5.8 5.8 0 0 1-1.47-.213 4.33 4.33 0 0 1-1.617-1.617 5.78 5.78 0 0 1-.736-2.066 31.09 31.09 0 0 1-.217-2.64c-.02-1.03-.03-2.06-.03-3.091 0-.318.001-.636.004-.954.025-.77.035-1.538.044-2.301.01-.89.075-1.774.168-2.64a5.78 5.78 0 0 1 .736-2.066 4.33 4.33 0 0 1 1.617-1.617 5.78 5.78 0 0 1 2.066-.736c.866-.127 1.75-.192 2.64-.217 1.03-.02 2.06-.03 3.091-.03zm.954 1.802c-.318 0-.636 0-.954 0-1.03 0-2.06.01-3.091.03-.89.025-1.774.09-2.64.217a3.98 3.98 0 0 0-1.42.507 2.53 2.53 0 0 0-.943.943 3.98 3.98 0 0 0-.507 1.42 31.09 31.09 0 0 0-.217 2.64c-.02 1.03-.03 2.06-.03 3.091 0 .318.001.636.004.954.025.77.035 1.538.044 2.301.01.89.075 1.774.168 2.64.11.79.29 1.565.507 2.301a2.53 2.53 0 0 0 .943.943 3.98 3.98 0 0 0 1.42.507c.866.127 1.75.192 2.64.217 1.03.02 2.06.03 3.091.03.318 0 .636-.001.954-.004.77-.025 1.538-.035 2.301-.044.89-.01 1.774-.075 2.64-.168.79-.11 1.565-.29 2.301-.507a2.53 2.53 0 0 0 .943-.943c.25-.475.43-1 .507-1.565.127-.866.192-1.75.217-2.64.02-1.03.03-2.06.03-3.091 0-.318-.001-.636-.004-.954-.025-.77-.035-1.538-.044-2.301-.01-.89-.075-1.774-.168-2.64a3.98 3.98 0 0 0-.507-1.42 2.53 2.53 0 0 0-.943-.943 3.98 3.98 0 0 0-1.42-.507 31.09 31.09 0 0 0-2.64-.217c-1.03-.02-2.06-.03-3.091-.03zM8.81 12c0 .77.01 1.538.03 2.301.025.89.09 1.774.217 2.64.11.79.29 1.565.507 2.301a2.53 2.53 0 0 0 .943.943c.475.25 1 .43 1.565.507.866.127 1.75.192 2.64.217 1.03.02 2.06.03 3.091.03.318 0 .636-.001.954-.004.77-.025 1.538-.035 2.301-.044.89-.01 1.774-.075 2.64-.168.79-.11 1.565-.29 2.301-.507a2.53 2.53 0 0 0 .943-.943c.25-.475.43-1 .507-1.565.127-.866.192-1.75.217-2.64.02-1.03.03-2.06.03-3.091 0-.318-.001-.636-.004-.954-.025-.77-.035-1.538-.044-2.301-.01-.89-.075-1.774-.168-2.64a3.98 3.98 0 0 0-.507-1.42 2.53 2.53 0 0 0-.943-.943c-.475-.25-1-.43-1.565-.507-.866-.127-1.75-.192-2.64-.217-1.03-.02-2.06-.03-3.091-.03-.318 0-.636.001-.954.004-.77.025-1.538.035-2.301.044-.89.01-1.774.075-2.64.168a3.98 3.98 0 0 0-1.42.507 2.53 2.53 0 0 0-.943.943 3.98 3.98 0 0 0-.507 1.42 31.09 31.09 0 0 0-.217 2.64c-.02 1.03-.03 2.06-.03 3.091z"></path></svg>
+                 </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" class="share-icon tiktok" title="分享到 TikTok (連結至個人資料)">
+                     <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+                 </a>
+            </div>
+            <p class="text-sm md:text-base" data-i18n-key="footer.copyright">© 2025 夏天 - 蘭嶼民宿. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+        </button>
+
+
+    <script>
+        const translations = {
+            'zh-TW': {
+                'meta.description': '夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。',
+                'logo.prefix': '夏',
+                'logo.suffix': '天',
+                'nav.home': '首頁',
+                'nav.about': '關於我們',
+                'nav.rooms': '房型介紹',
+                'nav.tours': '在地體驗',
+                'nav.offers': '優惠活動',
+                'nav.location': '交通資訊',
+                'nav.contact': '立即預訂',
+                'nav.theme_toggle_aria_label': '切換色彩模式',
+                'hero.title': '迎接蘭嶼的晨曦與浪濤',
+                'hero.slogan': '入住東清部落，感受蘭嶼的夏日風情。',
+                'hero.subtitle': '在夏天民宿，體驗最純粹的島嶼生活。',
+                'hero.button': '探索房型',
+                'hero.image_alt': '蘭嶼東清灣日出景色',
+                'highlights.rooms.title': '舒適房型',
+                'highlights.rooms.desc': '背包客、雙人、四人房選擇',
+                'highlights.tours.title': '在地體驗',
+                'highlights.tours.desc': '浮潛、拼板舟、環島導覽',
+                'highlights.location.title': '東清村中心',
+                'highlights.location.desc': '鄰近海灘與日出景點',
+                'about.title': '關於夏天民宿',
+                'about.p1': '夏天民宿座落於蘭嶼美麗的東清村，我們希望提供旅人一個像家一樣溫暖舒適的休憩空間。在這裡，您可以輕鬆步行至海邊，迎接每日的第一道曙光，感受太平洋的壯闊。',
+                'about.p2': '我們熱愛蘭嶼的自然風光與達悟文化，也樂於與您分享島上的點點滴滴。無論是想放空、探險，或是深入體驗在地生活，夏天民宿都歡迎您的到來。',
+                'about.image_alt': '夏天民宿外觀照片',
+                'rooms.title': '我們的房型',
+                'rooms.ocean.name': '精緻雙人房',
+                'rooms.ocean.desc': '精心佈置的空間，提供精緻舒適的住宿體驗。',
+                'rooms.ocean.price': 'NT$ 2,500 / 晚',
+                'rooms.ocean.image_alt': '夏天民宿精緻雙人房照片',
+                'rooms.mountain.name': '家庭四人房',
+                'rooms.mountain.desc': '適合全家出遊的寬敞房型，共享歡樂時光。',
+                'rooms.mountain.price': 'NT$ 3,000 / 晚',
+                'rooms.mountain.image_alt': '夏天民宿家庭四人房照片',
+                'rooms.dorm.name': '背包客床位',
+                'rooms.dorm.desc': '經濟實惠的選擇，認識來自各地的旅人，分享旅行故事。',
+                'rooms.dorm.price': 'NT$ 800 / 床',
+                'rooms.dorm.image_alt': '夏天民宿背包客床位照片',
+                'tours.title': '探索蘭嶼之美',
+                'tours.snorkeling.name': '浮潛體驗',
+                'tours.snorkeling.desc': '跳進蘭嶼的玻璃海，跟五顏六色的熱帶魚一起游泳吧！',
+                'tours.snorkeling.image_alt': '浮潛面罩和呼吸管圖示',
+                'tours.canoe.name': '拼板舟體驗',
+                'tours.canoe.desc': '（飛魚季限定）坐上達悟族人親手造的拼板舟，感受乘風破浪的古老智慧。',
+                'tours.canoe.image_alt': '達悟族拼板舟圖示',
+                'tours.island.name': '環島導覽',
+                'tours.island.desc': '騎上機車跟著我們走！帶你去看蘭嶼最美的角落，聽聽在地的故事。',
+                'tours.island.image_alt': '蘭嶼地圖或機車環島圖示',
+                'tours.owl.name': '夜觀角鴞',
+                'tours.owl.desc': '天黑了才精彩！一起去尋找蘭嶼特有的貓頭鷹「角鴞」，體驗神祕的夜生活。',
+                'tours.owl.image_alt': '蘭嶼角鴞圖示',
+                'tours.intertidal.name': '夜觀潮間帶',
+                'tours.intertidal.desc': '等潮水退去，海邊的石頭下藏著好多驚喜！帶手電筒來探險吧！',
+                'tours.intertidal.image_alt': '潮間帶生物如螃蟹、海星圖示',
+                'tours.underground.name': '地下屋導覽',
+                'tours.underground.desc': '走進達悟族人冬暖夏涼的地下屋，聽聽老祖宗的建築智慧和生活故事。',
+                'tours.underground.image_alt': '達悟族地下屋圖示',
+                'tours.festivals_subtitle': '重要文化節慶',
+                'tours.festivals_intro': '蘭嶼是達悟族（Tao族）聚居地，擁有獨特的文化與傳統節慶。這些節日對當地人意義重大，也吸引許多文化型旅客前來參與或觀察。',
+                'tours.festivals_table.header.name': '節日名稱',
+                'tours.festivals_table.header.time': '時間',
+                'tours.festivals_table.header.desc': '內容簡介',
+                'tours.festivals_table.flying_fish.name': '飛魚季（Flying Fish Festival）',
+                'tours.festivals_table.flying_fish.time': '約 2～6 月',
+                'tours.festivals_table.flying_fish.desc': '達悟族人尊崇飛魚為海洋贈禮，期間禁忌繁多，包括禁捕其他魚種、男女分工明確、舉行祭儀等。是蘭嶼最具代表性的文化活動。',
+                'tours.festivals_table.boat_launch.name': '小船下水祭（Launching of the Tatala）',
+                'tours.festivals_table.boat_launch.time': '飛魚季前夕',
+                'tours.festivals_table.boat_launch.desc': '傳統拼板舟「tatala」下水儀式，伴隨歌舞與祈福，是部落重大儀式。觀光客須尊重儀式，不可亂拍或靠近。',
+                'tours.festivals_table.harvest.name': '收穫祭 / 年終感恩祭',
+                'tours.festivals_table.harvest.time': '約 9～11 月',
+                'tours.festivals_table.harvest.desc': '部落族人感謝祖靈與自然的祭典，不對外公開，具有高度神聖性。建議以尊重的距離觀察。',
+                'tours.festivals_table.music.name': '島嶼音樂節（蘭嶼海洋音樂會）',
+                'tours.festivals_table.music.time': '不定期（夏季為主）',
+                'tours.festivals_table.music.desc': '青年自辦音樂活動，推廣部落文化、原創音樂，吸引年輕族群與音樂旅客。',
+                'tours.festivals_table.sports.name': '蘭嶼環島馬拉松 / 鐵人三項賽事',
+                'tours.festivals_table.sports.time': '每年夏末或秋初',
+                'tours.festivals_table.sports.desc': '結合海景與文化的體育活動，越來越多外來旅客參加。',
+                'offers.title': '夏日限定優惠',
+                'offers.earlybird.title': '早鳥預訂優惠',
+                'offers.earlybird.desc': '想搶便宜趁現在！提前 30 天預訂連住兩晚以上，直接給你房價 9 折！快來提早卡位你的蘭嶼慢活之旅～',
+                'offers.student.title': '學生畢旅專案',
+                'offers.student.desc': '青春就是要熱血！揪團來蘭嶼畢旅，憑學生證訂房達指定人數，送你機車折扣或神秘好禮！',
+                'offers.weekday_voucher.title': '淡季平日住宿券',
+                'offers.weekday_voucher.desc': '想避開人潮，靜靜享受蘭嶼的美？買張淡季平日住宿券最划算，使用更彈性，荷包也開心！',
+                'offers.package_deal.title': '寒暑假專案',
+                'offers.package_deal.desc': '把握寒暑假長假！揪好友或家人來蘭嶼放鬆，入住夏天民宿搭配行程或交通，享專屬優惠！',
+                'offers.contact_us': '立即洽詢 »',
+                'location.title': '交通資訊',
+                'location.address_title': '民宿地址',
+                'location.address_detail': '蘭嶼鄉東清村48號',
+                'location.transport_title': '如何前往蘭嶼',
+                'location.transport_plane': '<strong class="text-secondary dark:text-secondary-light">搭乘飛機：</strong>從「台東豐年機場」搭乘德安航空19人座小飛機前往「蘭嶼航空站」(約25分鐘)。',
+                'location.transport_ferry': '<strong class="text-primary dark:text-primary-light">搭乘船班：</strong>從「台東富岡漁港」或「墾丁後壁湖」搭乘客輪前往「蘭嶼開元港」(航程約2-2.5小時)。',
+                'location.arrival_title': '抵達民宿',
+                'location.arrival_intro': '抵達蘭嶼後，島上主要交通工具為機車。您可以：',
+                'location.arrival_option1': '自行於機場/港口附近租賃機車，再騎車前往民宿。',
+                'location.arrival_option2': '事先聯繫我們，我們可以協助代訂機車或安排接送服務 (可能需額外收費)。',
+                'location.arrival_option3': ' ',
+                'location.map_placeholder_title': '地圖載入區域',
+                'location.map_placeholder_desc': '(建議嵌入 Google Maps)',
+                'location.map_button': '在 Google Maps 開啟',
+                'contact.title': '聯絡夏天民宿',
+                'contact.subtitle': '有任何疑問，或是心動想訂房了？別害羞，透過下面任何一個方式聯絡我們吧！',
+                'contact.phone_label': '電話:',
+                'contact.line_label': 'Line ID:',
+                'contact.address_label': '地址:',
+                'contact.address_detail': '蘭嶼鄉東清村48號',
+                'contact.ig_label': 'Instagram:',
+                'contact.fb_label': 'Facebook:',
+                'contact.fb_value': '(民宿 FB 粉絲專頁)',
+                'contact.form.name_label': '姓名',
+                'contact.form.name_placeholder': '請輸入您的姓名',
+                'contact.form.email_label': '電子郵件',
+                'contact.form.email_placeholder': 'example@email.com',
+                'contact.form.phone_label': '聯絡電話',
+                'contact.form.phone_placeholder': '您的聯絡電話 (選填)',
+                'contact.form.subject_label': '主旨 / 預計入住日期',
+                'contact.form.subject_placeholder': '例如：訂房詢問 2025/07/10 - 07/12',
+                'contact.form.message_label': '您的訊息',
+                'contact.form.message_placeholder': '請在此輸入您的問題或訂房需求...',
+                'contact.form.submit_button': '送出訊息',
+                'footer.copyright': '© 2025 夏天 - 蘭嶼民宿. All Rights Reserved.',
+                'form.success': '訊息已成功送出！我們會盡快與您聯繫。',
+                'form.error.email': '請輸入有效的電子郵件格式。',
+                'form.error.general': '訊息送出失敗，請稍後再試或直接透過電話/Line聯繫我們。'
+            },
+            'en': {
+                 'meta.description': 'Summer Homestay: Experience the tranquility and warmth of Lanyu\'s Dongqing Village. Offering comfortable dorm, exquisite double, and family quad rooms for an authentic Lanyu experience.',
+                'logo.prefix': 'Summer',
+                'logo.suffix': 'Homestay',
+                'nav.home': 'Home',
+                'nav.about': 'About Us',
+                'nav.rooms': 'Rooms',
+                'nav.tours': 'Tours',
+                'nav.offers': 'Offers',
+                'nav.location': 'Location',
+                'nav.contact': 'Book Now',
+                'nav.theme_toggle_aria_label': 'Toggle theme',
+                'hero.title': 'Welcome Lanyu\'s Dawn and Waves',
+                'hero.slogan': 'Stay in Dongqing Village, feel the summer vibe of Lanyu.',
+                'hero.subtitle': 'Experience the purest island life at Summer Homestay.',
+                'hero.button': 'Explore Rooms',
+                'hero.image_alt': 'Lanyu Dongqing Bay sunrise view',
+                'highlights.rooms.title': 'Cozy Rooms',
+                'highlights.rooms.desc': 'Dorm, Double, Quad rooms available',
+                'highlights.tours.title': 'Local Tours',
+                'highlights.tours.desc': 'Snorkeling, Canoe, Island Tour',
+                'highlights.location.title': 'Dongqing Center',
+                'highlights.location.desc': 'Near beach and sunrise spots',
+                'about.title': 'About Summer Homestay',
+                'about.p1': 'Summer Homestay is located in the beautiful Dongqing Village of Lanyu. We aim to provide travelers with a warm and comfortable resting space like home. Here, you can easily walk to the seaside, greet the first light of dawn each day, and feel the majesty of the Pacific Ocean.',
+                'about.p2': 'We love Lanyu\'s natural scenery and Tao culture, and are happy to share the island\'s bits and pieces with you. Whether you want to relax, explore, or deeply experience local life, Summer Homestay welcomes you.',
+                'about.image_alt': 'Summer Homestay exterior photo',
+                'rooms.title': 'Our Rooms',
+                'rooms.ocean.name': 'Exquisite Double Room',
+                'rooms.ocean.desc': 'Well-decorated space, offering an exquisite and comfortable stay.',
+                'rooms.ocean.price': 'NT$ 2,500 / night',
+                'rooms.ocean.image_alt': 'Summer Homestay Exquisite Double Room photo',
+                'rooms.mountain.name': 'Family Quad Room',
+                'rooms.mountain.desc': 'Spacious room suitable for family trips, share happy moments together.',
+                'rooms.mountain.price': 'NT$ 3,000 / night',
+                'rooms.mountain.image_alt': 'Summer Homestay Family Quad Room photo',
+                'rooms.dorm.name': 'Backpacker Bed',
+                'rooms.dorm.desc': 'An economical choice to meet travelers from all over and share travel stories.',
+                'rooms.dorm.price': 'NT$ 800 / bed',
+                'rooms.dorm.image_alt': 'Summer Homestay dorm bed photo',
+                'tours.title': 'Explore the Beauty of Lanyu',
+                'tours.snorkeling.name': 'Snorkeling Experience',
+                'tours.snorkeling.desc': 'Jump into Lanyu\'s glass-like sea and swim with colorful tropical fish!',
+                'tours.snorkeling.image_alt': 'Snorkel mask and tube icon',
+                'tours.canoe.name': 'Traditional Canoe Experience',
+                'tours.canoe.desc': '(Flying Fish Season only) Hop on a hand-built Tao canoe and feel the ancient wisdom of riding the waves.',
+                'tours.canoe.image_alt': 'Tao traditional canoe icon',
+                'tours.island.name': 'Island Tour',
+                'tours.island.desc': 'Hop on a scooter and follow us! We\'ll show you the most beautiful corners of Lanyu and share local stories.',
+                'tours.island.image_alt': 'Lanyu map or scooter tour icon',
+                'tours.owl.name': 'Night Owl Watching',
+                'tours.owl.desc': 'It gets exciting after dark! Let\'s go find Lanyu\'s unique owls and experience the mysterious nightlife.',
+                'tours.owl.image_alt': 'Lanyu Scops Owl icon',
+                'tours.intertidal.name': 'Intertidal Zone Night Tour',
+                'tours.intertidal.desc': 'When the tide goes out, lots of surprises hide under the rocks by the sea! Bring a flashlight and let\'s explore!',
+                'tours.intertidal.image_alt': 'Intertidal creatures like crab, starfish icon',
+                'tours.underground.name': 'Underground House Tour',
+                'tours.underground.desc': 'Step into the Tao people\'s cool-in-summer, warm-in-winter underground houses and hear stories of ancestral wisdom.',
+                'tours.underground.image_alt': 'Tao underground house icon',
+                'tours.festivals_subtitle': 'Important Cultural Festivals',
+                'tours.festivals_intro': 'Lanyu is home to the Tao people, who have unique cultural and traditional festivals. These festivals are significant to locals and attract many cultural tourists.',
+                'tours.festivals_table.header.name': 'Festival Name',
+                'tours.festivals_table.header.time': 'Time',
+                'tours.festivals_table.header.desc': 'Description',
+                'tours.festivals_table.flying_fish.name': 'Flying Fish Festival',
+                'tours.festivals_table.flying_fish.time': 'Approx. Feb - Jun',
+                'tours.festivals_table.flying_fish.desc': 'The Tao people revere the flying fish as a gift from the sea. Numerous taboos exist during this period. It is Lanyu\'s most iconic cultural event.',
+                'tours.festivals_table.boat_launch.name': 'Launching of the Tatala',
+                'tours.festivals_table.boat_launch.time': 'Eve of Flying Fish Festival',
+                'tours.festivals_table.boat_launch.desc': 'Ceremony for launching the traditional "tatala" canoe. A major tribal ritual. Tourists must respect the ceremony.',
+                'tours.festivals_table.harvest.name': 'Harvest Festival / Year-End Thanksgiving',
+                'tours.festivals_table.harvest.time': 'Approx. Sep - Nov',
+                'tours.festivals_table.harvest.desc': 'A tribal ceremony to thank ancestors and nature, not open to the public, highly sacred.',
+                'tours.festivals_table.music.name': 'Island Music Festival (Lanyu Ocean Concert)',
+                'tours.festivals_table.music.time': 'Irregular (Mainly Summer)',
+                'tours.festivals_table.music.desc': 'Youth-organized music event promoting tribal culture and original music.',
+                'tours.festivals_table.sports.name': 'Lanyu Marathon / Triathlon',
+                'tours.festivals_table.sports.time': 'Late Summer or Early Autumn Annually',
+                'tours.festivals_table.sports.desc': 'Sports events combining sea views and culture, attracting participants.',
+                'offers.title': 'Summer Limited Offers',
+                'offers.earlybird.title': 'Early Bird Discount',
+                'offers.earlybird.desc': 'Want a deal? Book 2+ nights 30 days early and get 10% off! Grab your spot for a slow-paced Lanyu trip now~',
+                'offers.student.title': 'Student Graduation Trip Package',
+                'offers.student.desc': 'Youth means adventure! Gather your friends for a Lanyu grad trip, book with student IDs for enough people, and get scooter discounts or a mystery gift!',
+                'offers.weekday_voucher.title': 'Off-Season Weekday Voucher',
+                'offers.weekday_voucher.desc': 'Want to avoid crowds and enjoy Lanyu\'s tranquility? Buy an off-season weekday voucher for great value and flexibility!',
+                'offers.package_deal.title': 'Vacation Package',
+                'offers.package_deal.desc': 'Seize the long winter/summer break! Gather friends or family to relax in Lanyu, stay at Summer Homestay with package deals including activities or transportation, and enjoy exclusive discounts!',
+                'offers.contact_us': 'Inquire Now »',
+                'location.title': 'Location Information',
+                'location.address_title': 'Homestay Address',
+                'location.address_detail': 'No. 48, Dongqing Village, Lanyu Township',
+                'location.transport_title': 'How to Get to Lanyu',
+                'location.transport_plane': '<strong class="text-secondary dark:text-secondary-light">By Plane:</strong> Fly from "Taitung Airport (TTT)" to "Lanyu Airport (KYD)" on a 19-seater Daily Air plane (approx. 25 min).',
+                'location.transport_ferry': '<strong class="text-primary dark:text-primary-light">By Ferry:</strong> Take a passenger ferry from "Taitung Fugang Fishery Harbor" or "Kenting Houbihu" to "Lanyu Kaiyuan Harbor" (approx. 2-2.5 hours).',
+                'location.arrival_title': 'Getting to the Homestay',
+                'location.arrival_intro': 'After arriving in Lanyu, renting a scooter is the main way to get around. You can:',
+                'location.arrival_option1': 'Rent a scooter near the airport/harbor and ride to the homestay.',
+                'location.arrival_option2': 'Contact us in advance, and we can assist with scooter rental or arrange pickup service (fees may apply).',
+                'location.arrival_option3': ' ',
+                'location.map_placeholder_title': 'Map Area',
+                'location.map_placeholder_desc': '(Embed Google Maps recommended)',
+                'location.map_button': 'Open in Google Maps',
+                'contact.title': 'Contact Summer Homestay',
+                'contact.subtitle': 'Any questions, or ready to book your stay? Don\'t be shy, reach out via any method below!',
+                'contact.phone_label': 'Phone:',
+                'contact.line_label': 'Line ID:',
+                'contact.address_label': 'Address:',
+                'contact.address_detail': 'No. 48, Dongqing Village, Lanyu Township',
+                'contact.ig_label': 'Instagram:',
+                'contact.fb_label': 'Facebook:',
+                'contact.fb_value': '(Homestay FB Page)',
+                'contact.form.name_label': 'Name',
+                'contact.form.name_placeholder': 'Enter your name',
+                'contact.form.email_label': 'Email',
+                'contact.form.email_placeholder': 'example@email.com',
+                'contact.form.phone_label': 'Phone',
+                'contact.form.phone_placeholder': 'Your phone number (Optional)',
+                'contact.form.subject_label': 'Subject / Check-in Dates',
+                'contact.form.subject_placeholder': 'e.g., Booking Inquiry 2025/07/10 - 07/12',
+                'contact.form.message_label': 'Your Message',
+                'contact.form.message_placeholder': 'Enter your questions or booking request here...',
+                'contact.form.submit_button': 'Send Message',
+                'footer.copyright': '© 2025 Summer - Lanyu Homestay. All Rights Reserved.',
+                 // Add English form message translations
+                'form.success': 'Message sent successfully! We will contact you soon.',
+                'form.error.email': 'Please enter a valid email address.',
+                'form.error.general': 'Failed to send message. Please try again later or contact us directly via phone/Line.'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                const translation = translations[lang]?.[key];
+
+                if (translation !== undefined) {
+                    if (element.tagName === 'META' && element.name === 'description') {
+                        element.content = translation;
+                    } else if (key.endsWith('_aria_label')) {
+                         element.setAttribute('aria-label', translation);
+                    } else if (element.tagName === 'IMG' && key.endsWith('_alt')) {
+                        const altText = translations[lang]?.[key];
+                        if(altText) { element.alt = altText; }
+                    } else if ((element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') && key.endsWith('_placeholder')) {
+                         element.placeholder = translation;
+                    } else if (key.startsWith('location.transport_') || key === 'tours.festivals_note') {
+                         element.innerHTML = translation;
+                    } else {
+                        if (key === 'about.p1' || key === 'about.p2' || key === 'offers.earlybird.desc' || key === 'offers.student.desc' || key === 'offers.weekday_voucher.desc' || key === 'offers.package_deal.desc' || key === 'location.arrival_intro') {
+                           element.innerHTML = translation.replace(/\n/g, '<br>');
+                        } else {
+                           element.textContent = translation;
+                        }
+                    }
+                }
+            });
+            updateLangButtons(lang);
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        function updateLangButtons(activeLang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === activeLang) {
+                    btn.classList.add('active');
+                    // Adjust text size based on active language and button type
+                    if (btn.id === 'lang-en-btn' || btn.id === 'lang-en-btn-mobile') {
+                        btn.classList.add('text-xs');
+                        btn.classList.remove('text-sm');
+                    } else {
+                        btn.classList.add('text-sm');
+                        btn.classList.remove('text-xs');
+                    }
+                } else {
+                    btn.classList.remove('active');
+                     // Adjust text size based on inactive language and button type
+                    if (btn.id === 'lang-en-btn' || btn.id === 'lang-en-btn-mobile') {
+                        btn.classList.add('text-xs');
+                        btn.classList.remove('text-sm');
+                    } else {
+                        btn.classList.add('text-sm');
+                        btn.classList.remove('text-xs');
+                    }
+                }
+            });
+        }
+
+
+         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    return;
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        const themeToggleButtonMobile = document.getElementById('theme-toggle-mobile');
+        const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+        const currentTheme = localStorage.getItem('theme') ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+        function applyTheme(theme, darkIconEl, lightIconEl) {
+            if (!darkIconEl || !lightIconEl) {
+                return;
+            }
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                lightIconEl.classList.remove('hidden');
+                darkIconEl.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkIconEl.classList.remove('hidden');
+                lightIconEl.classList.add('hidden');
+            }
+        }
+
+        applyTheme(currentTheme, themeToggleDarkIcon, themeToggleLightIcon);
+        applyTheme(currentTheme, themeToggleDarkIconMobile, themeToggleLightIconMobile);
+
+       if(themeToggleButton && themeToggleDarkIcon && themeToggleLightIcon) {
+            themeToggleButton.addEventListener('click', () => {
+                const isDarkMode = document.documentElement.classList.contains('dark');
+                const newTheme = isDarkMode ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme, themeToggleDarkIcon, themeToggleLightIcon);
+                applyTheme(newTheme, themeToggleDarkIconMobile, themeToggleLightIconMobile);
+            });
+        }
+
+        if(themeToggleButtonMobile && themeToggleDarkIconMobile && themeToggleLightIconMobile) {
+            themeToggleButtonMobile.addEventListener('click', () => {
+                const isDarkMode = document.documentElement.classList.contains('dark');
+                const newTheme = isDarkMode ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme, themeToggleDarkIcon, themeToggleLightIcon);
+                applyTheme(newTheme, themeToggleDarkIconMobile, themeToggleLightIconMobile);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'zh-TW';
+            setLanguage(preferredLanguage); // Set initial language
+
+            const langZhBtn = document.getElementById('lang-zh-btn');
+            const langEnBtn = document.getElementById('lang-en-btn');
+            if(langZhBtn) langZhBtn.addEventListener('click', () => setLanguage('zh-TW'));
+            if(langEnBtn) langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+             const langZhBtnMobile = document.getElementById('lang-zh-btn-mobile');
+             const langEnBtnMobile = document.getElementById('lang-en-btn-mobile');
+             if(langZhBtnMobile) langZhBtnMobile.addEventListener('click', () => setLanguage('zh-TW'));
+             if(langEnBtnMobile) langEnBtnMobile.addEventListener('click', () => setLanguage('en'));
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button'); // Get close button
+
+            // Function to close mobile menu
+            const closeMobileMenu = () => {
+                if(mobileMenu) mobileMenu.classList.add('hidden');
+            }
+
+            // Toggle mobile menu
+            if(mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Close mobile menu via close button
+            if(mobileMenuCloseButton) {
+                mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+            }
+
+            // Close mobile menu when a link is clicked
+             document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+             // --- Form Validation and Submission ---
+             const contactForm = document.getElementById('contact-form');
+             const formMessage = document.getElementById('form-message');
+
+             if (contactForm && formMessage) {
+                 contactForm.addEventListener('submit', (e) => {
+                     e.preventDefault(); // Prevent actual form submission
+
+                     const emailInput = document.getElementById('email');
+                     const emailValue = emailInput.value;
+                     const currentLang = document.documentElement.lang || 'zh-TW'; // Get current language
+
+                     // Simple email validation regex
+                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                     formMessage.classList.remove('success', 'error', 'hidden'); // Reset message style
+
+                     if (!emailRegex.test(emailValue)) {
+                         // --- Display Email Error ---
+                         formMessage.textContent = translations[currentLang]?.['form.error.email'] || 'Please enter a valid email address.';
+                         formMessage.classList.add('error');
+                     } else {
+                         // --- Simulate Success ---
+                         // In a real application, you would send the data to a server here.
+                         // For this demo, we just show a success message.
+                         console.log('Form data (simulated submission):', {
+                            name: document.getElementById('name').value,
+                            email: emailValue,
+                            phone: document.getElementById('phone').value,
+                            subject: document.getElementById('subject').value,
+                            message: document.getElementById('message').value
+                         });
+
+                         formMessage.textContent = translations[currentLang]?.['form.success'] || 'Message sent successfully!';
+                         formMessage.classList.add('success');
+                         contactForm.reset(); // Clear the form fields after successful "submission"
+
+                         // Hide the message after a few seconds
+                         setTimeout(() => {
+                            formMessage.classList.add('hidden');
+                            formMessage.classList.remove('success');
+                         }, 5000); // Hide after 5 seconds
+                     }
+                 });
+             }
+
+             // --- Back to Top Button ---
+             const backToTopButton = document.getElementById('back-to-top');
+
+             if (backToTopButton) {
+                 window.addEventListener('scroll', () => {
+                     if (window.scrollY > 300) {
+                         backToTopButton.classList.add('show');
+                     } else {
+                         backToTopButton.classList.remove('show');
+                     }
+                 });
+
+                 backToTopButton.addEventListener('click', () => {
+                     window.scrollTo({
+                         top: 0,
+                         behavior: 'smooth'
+                     });
+                 });
+             } else {
+                 console.error('Back to top button not found.');
+             }
+
+             // --- Share Button Logic ---
+             const shareFacebook = document.getElementById('share-facebook');
+             const shareLine = document.getElementById('share-line');
+             const pageUrl = window.location.href;
+             const pageTitle = document.title; // Or a custom title
+
+             if(shareFacebook) {
+                shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+             }
+             if(shareLine) {
+                shareLine.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`;
+             }
+
+        });
+
+    </script>
+
+</body>
+</html>
