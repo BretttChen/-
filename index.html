@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。" data-i18n-key="meta.description" name="description"/>
+<title>夏天 - 蘭嶼民宿</title>
+<meta content="website" property="og:type"/>
+<meta content="https://example.com/" property="og:url"/>
+<meta content="夏天 - 蘭嶼民宿" property="og:title"/>
+<meta content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。" property="og:description"/>
+<meta content="images/lanyu-hero.png" property="og:image"/>
+<meta content="summary_large_image" property="twitter:card"/>
+<meta content="https://example.com/" property="twitter:url"/>
+<meta content="夏天 - 蘭嶼民宿" property="twitter:title"/>
+<meta content="夏天民宿：體驗蘭嶼東清村的寧靜與熱情。提供舒適背包客、精緻雙人、家庭四人房型，感受最道地的蘭嶼生活。" property="twitter:description"/>
+<meta content="images/lanyu-hero.png" property="twitter:image"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        // Tailwind CSS 配置
+        tailwind.config = {
+            darkMode: 'class', // 啟用 class 模式的暗黑模式
+            theme: {
+                extend: {
+                    borderRadius: { // 增加更大的圓角選項
+                        'xl': '0.75rem', // 12px
+                        '2xl': '1rem', // 16px
+                        '3xl': '1.5rem', // 24px
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Inter', 'sans-serif'], // 主要字體
+                        poppins: ['Poppins', 'sans-serif'] // Poppins 字體 (用於 Logo)
+                    },
+                    colors: {
+                         // --- 深色模式顏色定義 (依照要求修改) ---
+                        'gpt': {
+                            'body': '#1e1e1e', // 主要背景色
+                            'card': '#2b2b2b', // 次要背景色 (卡片等)
+                            'header': '#2b2b2b', // 次要背景色 (頁首/頁尾等)
+                            'button': '#10a37f', // 按鈕/高亮色
+                            'button-hover': '#00bfa6', // 按鈕/高亮色 Hover
+                            'link': '#00bfa6', // 連結顏色
+                            'text-primary': '#e0e0e0', // 主要文字色
+                            'text-secondary': '#a0a0a0', // 次要文字色
+                        },
+                        // --- 原始顏色定義 (淺色模式或其他) ---
+                        primary: { light: '#ade8f4', DEFAULT: '#0077b6', dark: '#023e8a' },
+                        secondary: { light: '#34d399', DEFAULT: '#059669', dark: '#047857' },
+                        accent: '#f59e0b', // 淺色模式強調色
+                        wood: { extralight: '#f5f5dc', light: '#d2b48c', DEFAULT: '#c19a6b', dark: '#8b5a2b', darker: '#5a3a1a' },
+                        neutral: { light: '#f8f9fa', DEFAULT: '#6c757d', dark: '#343a40', extralight: '#e9ecef', darker: '#212529' }
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet"/>
+<style>
+        /* 基本樣式 */
+        body { font-family: 'Noto Sans TC', 'Inter', sans-serif; @apply transition-colors duration-300 bg-neutral-extralight dark:bg-gpt-body text-neutral-dark dark:text-gpt-text-primary; } /* 修改深色背景和文字 */
+        /* 區塊滾動邊距 */
+        section[id] { scroll-margin-top: 80px; } /* 可微調 */
+        /* 按鈕基本樣式 */
+        .btn { @apply px-4 py-2 rounded-xl transition-colors duration-200 font-semibold; } /* 加大圓角 */
+        /* 語言切換按鈕樣式 */
+        .lang-btn { @apply px-3 py-1 rounded-xl transition-colors duration-200; } /* 加大圓角 */
+        .lang-btn.active { @apply bg-[#10a37f] dark:bg-gpt-button text-white font-semibold; } /* 修改深色模式 active 背景 */
+        .lang-btn:not(.active) { @apply text-neutral-dark dark:text-gpt-text-primary hover:bg-neutral-light dark:hover:bg-gpt-card; } /* 修改深色模式 hover 背景 */
+
+        /* 手機版選單樣式修改 */
+        #mobile-menu-items {
+            @apply absolute top-full left-0 right-0 bg-wood-light dark:bg-gpt-header shadow-xl p-4 pt-6 z-40 rounded-b-2xl; /* 加大圓角和陰影 */
+            @apply grid grid-cols-4 gap-2;
+        }
+        #mobile-menu-items a {
+            @apply text-center px-2 py-2 rounded-xl hover:bg-wood-DEFAULT dark:hover:bg-gpt-card text-wood-darker dark:text-gpt-text-primary text-base; /* 加大圓角, 修改深色文字 */
+        }
+        /* 手機版選單下方區域 */
+        #mobile-menu .controls-container { /* 為下方控制項新增容器 class */
+             @apply bg-wood-light dark:bg-gpt-header pt-3 pb-4 border-t border-wood-DEFAULT dark:border-gray-700 flex items-center justify-center space-x-4;
+        }
+
+        /* 文字陰影 */
+        .text-shadow { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
+        /* 地圖容器樣式 */
+        .map-container iframe { @apply w-full block align-middle rounded-2xl; } /* 加大圓角 */
+        /* 回到頂部按鈕樣式 */
+        #back-to-top { @apply fixed bottom-5 right-5 bg-[#10a37f] dark:bg-gpt-button text-white p-3 rounded-full shadow-xl hidden z-50 transition-opacity duration-300 hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover; } /* 修改顏色和陰影 */
+        #back-to-top.show { @apply block; }
+        /* 手機版主題切換按鈕樣式 */
+        #theme-toggle-mobile { @apply text-neutral-dark dark:text-gpt-text-primary hover:bg-neutral-light dark:hover:bg-gpt-card focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gpt-header focus:ring-[#10a37f] dark:focus:ring-gpt-link rounded-xl text-sm p-2; } /* 加大圓角, 修改顏色 */
+        /* 表單訊息樣式 */
+        #form-message { @apply mt-4 p-3 rounded-xl text-base; } /* 加大圓角 */
+        #form-message.success { @apply bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200; } /* 調整深色成功訊息 */
+        #form-message.error { @apply bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200; } /* 調整深色錯誤訊息 */
+
+        /* 卡片柔和陰影 (深色模式) */
+        .dark .card-soft-shadow {
+             box-shadow: 0 4px 15px rgba(16, 163, 127, 0.1), 0 1px 3px rgba(16, 163, 127, 0.08);
+        }
+
+    </style>
+</head>
+<body class="bg-neutral-extralight dark:bg-gpt-body text-neutral-dark dark:text-gpt-text-primary">
+<header class="bg-wood-light dark:bg-gpt-header shadow-lg fixed top-0 left-0 right-0 z-50 rounded-b-2xl transition-colors duration-300 border-b border-wood-light dark:border-gray-700"> {/* 修改圓角, 陰影, 深色邊框 */}
+<div class="container mx-auto px-4 md:px-6 py-2 flex justify-between items-center">
+<a class="flex items-center" href="#">
+<img alt="夏天民宿 Logo" class="h-24 md:h-28 w-auto rounded-xl" src="images/summer.jpg"/> {/* 加大 Logo 圓角 */}
+<span class="ml-3 text-3xl md:text-4xl font-poppins font-bold text-primary dark:text-[#00bfa6]">夏天-民宿</span> {/* 修改深色 Logo 文字顏色 */}
+</a>
+<nav class="hidden md:flex items-center space-x-1 lg:space-x-2" id="desktop-menu-items">
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.home" href="#hero">首頁</a> {/* 修改顏色, 圓角 */}
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.about" href="#about">關於我們</a> {/* 修改顏色, 圓角 */}
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.rooms" href="#rooms">房型介紹</a> {/* 修改顏色, 圓角 */}
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.tours" href="#tours">在地體驗</a> {/* 修改顏色, 圓角 */}
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.offers" href="#offers">優惠活動</a> {/* 修改顏色, 圓角 */}
+<a class="text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link rounded-xl p-2 transition duration-300 text-sm" data-i18n-key="nav.location" href="#location">交通資訊</a> {/* 修改顏色, 圓角 */}
+<a class="bg-[#10a37f] dark:bg-gpt-button text-white px-3 py-1.5 rounded-xl hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover transition duration-300 text-sm font-semibold" data-i18n-key="nav.contact" href="#contact">立即預訂</a> {/* 修改顏色, 圓角 */}
+<div class="ml-2 lg:ml-3 border-l border-gray-300 dark:border-gray-600 pl-2 lg:pl-3 flex items-center space-x-1 lg:space-x-2">
+<button class="lang-btn active text-sm" data-lang="zh-TW" id="lang-zh-btn" type="button">繁體</button>
+<button class="lang-btn text-xs" data-lang="en" id="lang-en-btn" type="button">EN</button>
+<button aria-label="Toggle theme" class="ml-2 text-neutral-dark dark:text-gpt-text-primary hover:bg-neutral-light dark:hover:bg-gpt-card focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gpt-header focus:ring-[#10a37f] dark:focus:ring-gpt-link rounded-xl text-sm p-2" data-i18n-key="nav.theme_toggle_aria_label" id="theme-toggle" type="button"> {/* 修改樣式 */}
+<svg class="hidden w-4 h-4" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-4 h-4" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</nav>
+<button class="md:hidden text-neutral-dark dark:text-gpt-text-primary" id="mobile-menu-button"> {/* 修改顏色 */}
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="hidden md:hidden" id="mobile-menu">
+    <div class="relative" id="mobile-menu-items"> {/* Grid 在 style 標籤內定義 */}
+        <button class="absolute top-2 right-2 p-2 text-neutral-dark dark:text-gpt-text-primary hover:text-secondary dark:hover:text-gpt-link" id="mobile-menu-close-button"> {/* 修改顏色 */}
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+        </button>
+        {/* 導覽連結樣式在 style 標籤內定義 */}
+        <a class="mobile-nav-link" data-i18n-key="nav.home" href="#hero">首頁</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.about" href="#about">關於我們</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.rooms" href="#rooms">房型介紹</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.tours" href="#tours">在地體驗</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.offers" href="#offers">優惠活動</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.location" href="#location">交通資訊</a>
+        <a class="mobile-nav-link" data-i18n-key="nav.contact" href="#contact">立即預訂</a>
+    </div>
+     <div class="controls-container"> {/* 控制項容器 */}
+        <button class="lang-btn active text-sm" data-lang="zh-TW" id="lang-zh-btn-mobile" type="button">繁體</button>
+        <button class="lang-btn text-xs" data-lang="en" id="lang-en-btn-mobile" type="button">EN</button>
+        <button aria-label="Toggle theme" data-i18n-key="nav.theme_toggle_aria_label" id="theme-toggle-mobile" type="button">
+            <svg class="hidden w-4 h-4" fill="currentColor" id="theme-toggle-dark-icon-mobile" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg class="hidden w-4 h-4" fill="currentColor" id="theme-toggle-light-icon-mobile" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+        </button>
+    </div>
+</div>
+</header>
+<main class="pt-24 md:pt-28"> {/* 增加 main 的 padding-top */}
+<section class="relative h-[65vh] md:h-[70vh] min-h-[380px] md:min-h-[450px] flex items-center justify-center text-center text-white rounded-2xl mx-2 md:mx-4 overflow-hidden shadow-xl" id="hero"> {/* 加大圓角, 陰影 */}
+<img alt="蘭嶼東清灣日出景色" class="absolute inset-0 w-full h-full object-cover" data-i18n-key="hero.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/1400x700/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/lanyu-hero.png"/>
+<div class="relative z-10 p-4 md:p-6 rounded-2xl bg-black/30 dark:bg-black/50"> {/* 加大圓角, 調整背景透明度 */}
+<h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-2 text-white text-shadow" data-i18n-key="hero.title">迎接蘭嶼的晨曦與浪濤</h1>
+<p class="text-lg md:text-xl lg:text-2xl italic text-white dark:text-gpt-text-primary mt-2 mb-3 md:mb-4 text-shadow" data-i18n-key="hero.slogan">入住東清部落，感受蘭嶼的夏日風情。</p> {/* 修改深色文字 */}
+<p class="text-base md:text-lg lg:text-xl mb-4 md:mb-6 text-white dark:text-gpt-text-secondary text-shadow" data-i18n-key="hero.subtitle">在夏天民宿，體驗最純粹的島嶼生活。</p> {/* 修改深色文字 */}
+<a class="bg-[#10a37f] dark:bg-gpt-button text-white px-5 py-2 md:px-6 md:py-3 rounded-xl hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover transition duration-300 text-lg md:text-xl font-semibold shadow-lg" data-i18n-key="hero.button" href="#rooms">探索房型</a> {/* 修改顏色, 圓角, 陰影 */}
+</div>
+</section>
+<section class="bg-white dark:bg-gpt-card py-8 md:py-10 lg:py-12 mt-8 relative z-20 mx-auto max-w-6xl rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 card-soft-shadow" id="highlights"> {/* 加大圓角, 陰影, 修改深色背景/邊框 */}
+<div class="container mx-auto px-4 md:px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 text-center">
+<a class="group block p-3 md:p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition duration-300" href="#rooms"> {/* 加大圓角, 修改深色 hover 背景 */}
+<div class="text-3xl md:text-4xl mb-1 md:mb-2">☀️</div>
+<h3 class="text-lg md:text-xl font-semibold text-neutral-dark dark:text-gpt-text-primary mb-1 group-hover:text-primary dark:group-hover:text-gpt-link" data-i18n-key="highlights.rooms.title">舒適房型</h3> {/* 修改顏色 */}
+<p class="text-sm md:text-base text-neutral-DEFAULT dark:text-gpt-text-secondary" data-i18n-key="highlights.rooms.desc">背包客、雙人、四人房選擇</p> {/* 修改顏色 */}
+</a>
+<a class="group block p-3 md:p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition duration-300" href="#tours"> {/* 加大圓角, 修改深色 hover 背景 */}
+<div class="text-3xl md:text-4xl mb-1 md:mb-2">🌊</div>
+<h3 class="text-lg md:text-xl font-semibold text-neutral-dark dark:text-gpt-text-primary mb-1 group-hover:text-primary dark:group-hover:text-gpt-link" data-i18n-key="highlights.tours.title">在地體驗</h3> {/* 修改顏色 */}
+<p class="text-sm md:text-base text-neutral-DEFAULT dark:text-gpt-text-secondary" data-i18n-key="highlights.tours.desc">浮潛、拼板舟、環島導覽</p> {/* 修改顏色 */}
+</a>
+<a class="group block p-3 md:p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition duration-300" href="#location"> {/* 加大圓角, 修改深色 hover 背景 */}
+<div class="text-3xl md:text-4xl mb-1 md:mb-2">📍</div>
+<h3 class="text-lg md:text-xl font-semibold text-neutral-dark dark:text-gpt-text-primary mb-1 group-hover:text-primary dark:group-hover:text-gpt-link" data-i18n-key="highlights.location.title">東清村中心</h3> {/* 修改顏色 */}
+<p class="text-sm md:text-base text-neutral-DEFAULT dark:text-gpt-text-secondary" data-i18n-key="highlights.location.desc">鄰近海灘與日出景點</p> {/* 修改顏色 */}
+</a>
+</div>
+</div>
+</section>
+<section class="container mx-auto px-4 md:px-6 pt-10 pb-10 md:pt-12 md:pb-16" id="about">
+<div class="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
+<div>
+<h2 class="text-3xl md:text-4xl font-bold text-neutral-darker dark:text-gpt-text-primary mb-3 md:mb-4" data-i18n-key="about.title">關於夏天民宿</h2> {/* 修改顏色 */}
+<p class="mb-3 md:mb-4 leading-relaxed text-base md:text-lg dark:text-gpt-text-secondary" data-i18n-key="about.p1">
+                        夏天民宿座落於蘭嶼美麗的東清村，我們希望提供旅人一個像家一樣溫暖舒適的休憩空間。在這裡，您可以輕鬆步行至海邊，迎接每日的第一道曙光，感受太平洋的壯闊。
+                    </p>
+<p class="leading-relaxed text-base md:text-lg dark:text-gpt-text-secondary" data-i18n-key="about.p2">
+                        我們熱愛蘭嶼的自然風光與達悟文化，也樂於與您分享島上的點點滴滴。無論是想放空、探險，或是深入體驗在地生活，夏天民宿都歡迎您的到來。
+                        </p>
+</div>
+<div class="rounded-2xl overflow-hidden shadow-xl border-4 border-gray-200 dark:border-gray-700"> {/* 加大圓角, 陰影, 修改邊框 */}
+<img alt="夏天民宿外觀照片" class="w-full h-auto object-cover" data-i18n-key="about.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/600x400/34d399/ffffff?text=民宿照片待補'; this.alt='民宿照片待補'" src="images/about-exterior.jpg"/>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-gpt-body py-10 md:py-12 lg:py-16 rounded-2xl mx-2 md:mx-4 shadow-xl transition-colors duration-300" id="rooms"> {/* 加大圓角, 陰影 */}
+<div class="container mx-auto px-4 md:px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-center text-neutral-darker dark:text-gpt-text-primary mb-6 md:mb-8 lg:mb-10" data-i18n-key="rooms.title">我們的房型</h2> {/* 修改顏色 */}
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+<div class="border border-gray-200 dark:border-gray-700 bg-neutral-light dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition duration-300 flex flex-col card-soft-shadow"> {/* 修改樣式 */}
+<img alt="夏天民宿精緻雙人房照片" class="w-full h-36 md:h-48 object-cover rounded-t-2xl" data-i18n-key="rooms.ocean.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/400x300/ade8f4/ffffff?text=房間照片待補'; this.alt='房間照片待補'" src="images/room-ocean.jpg"/> {/* 加大圓角 */}
+<div class="p-4 md:p-6 flex flex-col flex-grow">
+<h3 class="text-xl md:text-2xl font-semibold text-primary dark:text-gpt-link mb-2" data-i18n-key="rooms.ocean.name">精緻雙人房</h3> {/* 修改顏色 */}
+<p class="text-neutral-dark dark:text-gpt-text-secondary text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.ocean.desc">精心佈置的空間，提供精緻舒適的住宿體驗。</p> {/* 修改顏色 */}
+<ul class="text-sm text-neutral-DEFAULT dark:text-gray-400 list-disc list-inside mb-3 space-y-1">
+    <li><span class="font-semibold">設施：</span>（請在此填寫...）</li>
+    <li><span class="font-semibold">入住/退房：</span>（請在此填寫...）</li>
+</ul>
+<span class="text-lg md:text-xl font-bold text-accent dark:text-[#00bfa6] mt-auto" data-i18n-key="rooms.ocean.price">NT$ 2,500 / 晚</span> {/* 修改顏色 */}
+<a class="mt-3 md:mt-4 inline-block text-center bg-[#10a37f] dark:bg-gpt-button text-white px-4 py-2 rounded-xl text-sm md:text-base font-semibold hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover transition duration-300 shadow-md" data-i18n-key="offers.contact_us" href="#contact">立即洽詢 »</a> {/* 修改樣式 */}
+</div>
+</div>
+<div class="border border-gray-200 dark:border-gray-700 bg-neutral-light dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition duration-300 flex flex-col card-soft-shadow"> {/* 修改樣式 */}
+<img alt="夏天民宿家庭四人房照片" class="w-full h-36 md:h-48 object-cover rounded-t-2xl" data-i18n-key="rooms.mountain.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/400x300/6ee7b7/ffffff?text=房間照片待補'; this.alt='房間照片待補'" src="images/room-mountain.jpg"/> {/* 加大圓角 */}
+<div class="p-4 md:p-6 flex flex-col flex-grow">
+<h3 class="text-xl md:text-2xl font-semibold text-secondary dark:text-gpt-link mb-2" data-i18n-key="rooms.mountain.name">家庭四人房</h3> {/* 修改顏色 */}
+<p class="text-neutral-dark dark:text-gpt-text-secondary text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.mountain.desc">適合全家出遊的寬敞房型，共享歡樂時光。</p> {/* 修改顏色 */}
+<ul class="text-sm text-neutral-DEFAULT dark:text-gray-400 list-disc list-inside mb-3 space-y-1">
+    <li><span class="font-semibold">設施：</span>（請在此填寫...）</li>
+     <li><span class="font-semibold">入住/退房：</span>（請在此填寫...）</li>
+</ul>
+<span class="text-lg md:text-xl font-bold text-accent dark:text-[#00bfa6] mt-auto" data-i18n-key="rooms.mountain.price">NT$ 3,000 / 晚</span> {/* 修改顏色 */}
+<a class="mt-3 md:mt-4 inline-block text-center bg-[#10a37f] dark:bg-gpt-button text-white px-4 py-2 rounded-xl text-sm md:text-base font-semibold hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover transition duration-300 shadow-md" data-i18n-key="offers.contact_us" href="#contact">立即洽詢 »</a> {/* 修改樣式 */}
+</div>
+</div>
+<div class="border border-gray-200 dark:border-gray-700 bg-neutral-light dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition duration-300 flex flex-col card-soft-shadow"> {/* 修改樣式 */}
+<img alt="夏天民宿背包客床位照片" class="w-full h-36 md:h-48 object-cover rounded-t-2xl" data-i18n-key="rooms.dorm.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/400x300/c4b5fd/ffffff?text=房間照片待補'; this.alt='房間照片待補'" src="images/room-dorm.jpg"/> {/* 加大圓角 */}
+<div class="p-4 md:p-6 flex flex-col flex-grow">
+<h3 class="text-xl md:text-2xl font-semibold text-purple-600 dark:text-gpt-link mb-2" data-i18n-key="rooms.dorm.name">背包客床位</h3> {/* 修改顏色 */}
+<p class="text-neutral-dark dark:text-gpt-text-secondary text-sm md:text-base mb-3 md:mb-4 flex-grow" data-i18n-key="rooms.dorm.desc">經濟實惠的選擇，認識來自各地的旅人，分享旅行故事。</p> {/* 修改顏色 */}
+<ul class="text-sm text-neutral-DEFAULT dark:text-gray-400 list-disc list-inside mb-3 space-y-1">
+    <li><span class="font-semibold">設施：</span>（請在此填寫...）</li>
+     <li><span class="font-semibold">入住/退房：</span>（請在此填寫...）</li>
+</ul>
+<span class="text-lg md:text-xl font-bold text-accent dark:text-[#00bfa6] mt-auto" data-i18n-key="rooms.dorm.price">NT$ 800 / 床</span> {/* 修改顏色 */}
+<a class="mt-3 md:mt-4 inline-block text-center bg-[#10a37f] dark:bg-gpt-button text-white px-4 py-2 rounded-xl text-sm md:text-base font-semibold hover:bg-[#00bfa6] dark:hover:bg-gpt-button-hover transition duration-300 shadow-md" data-i18n-key="offers.contact_us" href="#contact">立即洽詢 »</a> {/* 修改樣式 */}
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="container mx-auto px-4 md:px-6 py-10 md:py-12 lg:py-16" id="tours">
+<h2 class="text-3xl md:text-4xl font-bold text-center text-neutral-darker dark:text-gpt-text-primary mb-6 md:mb-8 lg:mb-10" data-i18n-key="tours.title">探索蘭嶼之美</h2> {/* 修改顏色 */}
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="浮潛面罩和呼吸管圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.snorkeling.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/ade8f4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-snorkeling.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-primary dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.snorkeling.name">浮潛體驗</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.snorkeling.desc">跳進蘭嶼的玻璃海，跟五顏六色的熱帶魚一起游泳吧！</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="達悟族拼板舟圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.canoe.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/f59e0b/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-canoe.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-accent dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.canoe.name">拼板舟體驗</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.canoe.desc">（飛魚季限定）坐上達悟族人親手造的拼板舟，感受乘風破浪的古老智慧。</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="蘭嶼地圖或機車環島圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.island.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/34d399/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-island.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-secondary dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.island.name">環島導覽</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.island.desc">騎上機車跟著我們走！帶你去看蘭嶼最美的角落，聽聽在地的故事。</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="蘭嶼角鴞圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.owl.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/f9a8d4/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-owl.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-pink-800 dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.owl.name">夜觀角鴞</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.owl.desc">天黑了才精彩！一起去尋找蘭嶼特有的貓頭鷹「角鴞」，體驗神祕的夜生活。</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="潮間帶生物如螃蟹、海星圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.intertidal.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/a5b4fc/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-intertidal.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-indigo-700 dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.intertidal.name">夜觀潮間帶</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.intertidal.desc">等潮水退去，海邊的石頭下藏著好多驚喜！帶手電筒來探險吧！</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+<div class="text-center p-4 md:p-6 bg-white dark:bg-gpt-card rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-900/50 transition border border-gray-200 dark:border-gray-700 dark:hover:bg-gray-700/50 card-soft-shadow"> {/* 修改樣式 */}
+<img alt="達悟族地下屋圖示" class="w-28 h-20 md:w-40 md:h-32 object-contain rounded-md mb-3 md:mb-4 mx-auto" data-i18n-key="tours.underground.image_alt" onerror="this.onerror=null; this.src='https://placehold.co/160x120/c19a6b/ffffff?text=圖片載入失敗'; this.alt='圖片載入失敗'" src="images/tour-underground.png"/> {/* 改為 object-contain */}
+<h4 class="font-semibold text-lg md:text-xl text-wood-dark dark:text-gpt-link mb-1 md:mb-2" data-i18n-key="tours.underground.name">地下屋導覽</h4> {/* 修改顏色 */}
+<p class="text-sm md:text-base dark:text-gpt-text-secondary" data-i18n-key="tours.underground.desc">走進達悟族人冬暖夏涼的地下屋，聽聽老祖宗的建築智慧和生活故事。</p> {/* 修改顏色 */}
+<p class="text-xs text-neutral-DEFAULT dark:text-gray-400 mt-2">（費用/時長/包含項目/注意事項...）</p>
+</div>
+</div>
+<div class="mt-10 md:mt-12 lg:mt-16 pt-8 md:pt-10 lg:pt-12 border-t border-gray-200 dark:border-gray-700"> {/* 修改邊框 */}
+<h3 class="text-2xl md:text-3xl font-semibold text-center text-neutral-darker dark:text-gpt-text-primary mb-4 md:mb-6" data-i18n-key="tours.festivals_subtitle">重要文化節慶</h3> {/* 修改顏色 */}
+<p class="text-center mb-5 md:mb-8 max-w-2xl mx-auto text-base md:text-lg dark:text-gpt-text-secondary" data-i18n-key="tours.festivals_intro">
+                    蘭嶼是達悟族（Tao族）聚居地，擁有獨特的文化與傳統節慶。這些節日對當地人意義重大，也吸引許多文化型旅客前來參與或觀察。
+                </p>
+<div class="overflow-x-auto rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg bg-white dark:bg-gpt-card card-soft-shadow"> {/* 修改樣式 */}
+<table class="w-full text-sm md:text-base text-left">
+<thead class="text-xs md:text-sm uppercase bg-gray-100 dark:bg-gray-700/50 text-neutral-dark dark:text-gpt-text-secondary"> {/* 修改樣式 */}
+<tr>
+<th class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.name" scope="col">節日名稱</th>
+<th class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.time" scope="col">時間</th>
+<th class="px-4 py-2 md:px-6 md:py-3" data-i18n-key="tours.festivals_table.header.desc" scope="col">內容簡介</th>
+</tr>
+</thead>
+<tbody class="text-neutral-dark dark:text-gpt-text-secondary"> {/* 修改顏色 */}
+<tr class="bg-white dark:bg-gpt-card border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition"> {/* 修改樣式 */}
+<th class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap text-neutral-darker dark:text-gpt-text-primary" data-i18n-key="tours.festivals_table.flying_fish.name" scope="row">飛魚季（Flying Fish Festival）</th> {/* 修改顏色 */}
+<td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.flying_fish.time">約 2～6 月</td>
+<td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festivals_table.flying_fish.desc">達悟族人尊崇飛魚為海洋贈禮，期間禁忌繁多，包括禁捕其他魚種、男女分工明確、舉行祭儀等。是蘭嶼最具代表性的文化活動。</td>
+</tr>
+<tr class="bg-white dark:bg-gpt-card border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition"> {/* 修改樣式 */}
+<th class="px-4 py-3 md:px-6 md:py-4 font-medium whitespace-nowrap text-neutral-darker dark:text-gpt-text-primary" data-i18n-key="tours.festivals_table.boat_launch.name" scope="row">小船下水祭（Launching of the Tatala）</th> {/* 修改顏色 */}
+<td class="px-4 py-3 md:px-6 md:py-4" data-i18n-key="tours.festiva
